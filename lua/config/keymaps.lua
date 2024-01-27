@@ -42,11 +42,6 @@ vim.api.nvim_set_keymap("n", "<C-V>", "p", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-V>", '<C-R>"', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-V>", "p", { noremap = true, silent = true })
 
--- Change window
-for i = 1, 9 do
-  vim.api.nvim_set_keymap("n", "<C-" .. i .. ">", i .. "gt", { noremap = true, silent = true })
-end
-
 -- Undo
 vim.api.nvim_set_keymap("n", "<C-Z>", "u", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-Z>", "<C-O>u", { noremap = true, silent = true })
