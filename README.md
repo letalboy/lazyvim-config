@@ -33,6 +33,14 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 - Redo:
   - `ctrl + shift + z`
 
+##### Tabs:
+- tabs navigation:
+  - ⬅️: (in normal mode ontop of one tab)
+    - `shift + h`
+  - ➡️: (in normal mode ontop of one tab)
+    - `shift + l`   
+
+
 ##### window:
 - screen navigation
   - ⬅️:
