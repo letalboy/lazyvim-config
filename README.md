@@ -6,6 +6,10 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 ###Command Maps:
 
 ##### Lines:
+- Tab:
+  - `Tab`
+- Undo Tab:
+  - `ctrl + d`
 - Create lines
   - Att top:
     - `ctrl + m`
