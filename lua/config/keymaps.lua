@@ -58,3 +58,9 @@ vim.api.nvim_set_keymap("n", "<C-S-N>", ":execute 'normal! G' | startinsert<CR>"
 -- Tab to left using shit + tab
 vim.api.nvim_set_keymap("n", "<C-D>", "<<", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-D>", "<", { noremap = true, silent = true })
+
+-- Telescope maps
+vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope buffers<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fh", ":Telescope help_tags<CR>", { noremap = true, silent = true })
