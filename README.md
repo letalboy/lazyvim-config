@@ -5,6 +5,8 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 ###Command Maps:
 
+- `shift + k` in normal mode over  afunction open a view of the doc string of the function
+
 ##### Lines:
 - Tab:
   - `Tab`
