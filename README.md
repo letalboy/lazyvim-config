@@ -42,6 +42,14 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
   - ➡️: (in normal mode ontop of one tab)
     - `shift + l`   
 
+##### markdown visualizer
+go to normal mode
+- Open Markdown Visualizer
+  - `ctrl + mp`
+- Close Markdown Visualizer
+  - `ctrl + ms`
+- Toggle Markdown Visualizer
+  - `ctrl + mt` 
 
 ##### window:
 - screen navigation
