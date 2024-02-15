@@ -64,3 +64,8 @@ vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<CR>", { norema
 vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope buffers<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>fh", ":Telescope help_tags<CR>", { noremap = true, silent = true })
+
+-- MarkdownVisualize
+vim.api.nvim_set_keymap("n", "<leader>mp", "<Plug>MarkdownPreview", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ms", "<Plug>MarkdownPreviewStop", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>mt", "<Plug>MarkdownPreviewToggle", { noremap = true, silent = true })

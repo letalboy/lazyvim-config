@@ -6,3 +6,4 @@ vim.lang.svelte.lsp.setup = {
 }
 
 vim.use("evanleck/vim-svelte")
+vim.use("iamcco/markdown-preview.nvim")

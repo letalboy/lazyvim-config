@@ -1,3 +1,6 @@
+-- Check the operating system
+local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -40,6 +43,22 @@ return {
     config = function()
       require("gitsigns").setup()
       vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
+    run = function()
+      -- Use a different build command depending on the OS
+      if is_windows then
+        vim.fn.system({ "cmd", "/c", "cd app && npm install" })
+      else
+        vim.fn.system({ "sh", "-c", "cd app && npm install" })
+      end
+    end,
+    config = function()
+      vim.g.mkdp_auto_start = 1
     end,
   },
 }
