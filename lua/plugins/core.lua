@@ -61,4 +61,11 @@ return {
       vim.g.mkdp_auto_start = 1
     end,
   },
+  {
+    "numToStr/Comment.nvim",
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
+  },
 }
