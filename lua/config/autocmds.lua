@@ -16,4 +16,5 @@ vim.cmd([[
   autocmd FileType svelte highlight link htmlTag Keyword
   autocmd FileType svelte highlight link htmlEndTag Keyword
   autocmd BufNewFile,BufRead *.svelte setlocal filetype=svelte
+  autocmd BufRead,BufNewFile *.astro setlocal filetype=astro 
 ]])

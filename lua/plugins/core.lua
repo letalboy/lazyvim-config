@@ -7,8 +7,14 @@ return {
     opts = {
       ensure_installed = {
         "svelte",
+        "astro",
       },
     },
+    run = ":TSUpdate",
+  },
+  {
+    "virchau13/tree-sitter-astro",
+    run = "tree-sitter generate",
   },
   {
     "akinsho/toggleterm.nvim",
@@ -68,5 +74,44 @@ return {
     },
     lazy = false,
   },
-  { "wuelnerdotexe/vim-astro" },
+  {
+    "mhartington/formatter.nvim",
+    config = function()
+      local formatter = require("formatter")
+
+      -- Configuration for Prettier with Astro support
+      formatter.setup({
+        filetype = {
+          astro = {
+            -- Prettier formatter configuration for Astro files
+            function()
+              return {
+                exe = "prettier", -- Assuming Prettier is in your $PATH
+                args = {
+                  "--plugin-search-dir=.",
+                  "--parser",
+                  "astro",
+                  "--plugin",
+                  "prettier-plugin-astro",
+                },
+                stdin = true,
+              }
+            end,
+          },
+          -- ... other filetype formatters
+        },
+      })
+
+      -- Optional: Set keymaps for formatting
+      vim.api.nvim_exec(
+        [[
+        augroup FormatAutogroup
+          autocmd!
+          autocmd BufWritePost *.astro FormatWrite
+        augroup END
+      ]],
+        true
+      )
+    end,
+  },
 }
