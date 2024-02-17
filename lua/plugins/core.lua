@@ -68,4 +68,5 @@ return {
     },
     lazy = false,
   },
+  { "wuelnerdotexe/vim-astro" },
 }
