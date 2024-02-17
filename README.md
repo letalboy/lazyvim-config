@@ -3,61 +3,69 @@
 A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
 Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
-###Command Maps:
+### Keyboard Shortcuts Overview
 
-- `shift + k` in normal mode over  afunction open a view of the doc string of the function
+#### Documentation Viewing:
 
-##### Lines:
-- Tab:
-  - `Tab`
-- Undo Tab:
-  - `ctrl + d`
-- Create lines
-  - Att top:
-    - `ctrl + m`
-  - Att bottom:
-    - `ctrl + n`
-- move lines:
-  - up:
-    - `alt + arrow up`
-  - down:
-    - `alt + arrow down`
-- cut lines:
-  - `ctrl + x`
-- copy:
-  - `ctrl + c`
-- paste:
-  - `ctrl + v`
-  
-##### Undo and Redo:
-- Undo:
-  - `ctrl + z`
-- Redo:
-  - `ctrl + shift + z`
+- Press `Shift + K` in normal mode over a function to view its documentation.
 
-##### Tabs:
-- tabs navigation:
-  - ⬅️: (in normal mode ontop of one tab)
-    - `shift + h`
-  - ➡️: (in normal mode ontop of one tab)
-    - `shift + l`   
+#### Editing Lines:
 
-##### markdown visualizer
-go to normal mode
-- Open Markdown Visualizer
-  - `ctrl + mp`
-- Close Markdown Visualizer
-  - `ctrl + ms`
-- Toggle Markdown Visualizer
-  - `ctrl + mt` 
+- **Indent Line**: Press `Tab`.
+- **Unindent Line**: Press `Ctrl + D`.
+- **Insert Line**:
+  - At the top: Press `Ctrl + M`.
+  - At the bottom: Press `Ctrl + N`.
+- **Move Line**:
+  - Up: Press `Alt + Up Arrow`.
+  - Down: Press `Alt + Down Arrow`.
+- **Cut Line**: Press `Ctrl + X`.
+- **Copy**: Press `Ctrl + C`.
+- **Paste**: Press `Ctrl + V`.
 
-##### window:
-- screen navigation
-  - ⬅️:
-    - `shift + h`
-  - ➡️:
-    - `shift + l`
-  - ⬆️:
-    - `shift + j`
-  - ⬇️:
-    - `shift + k`   
+#### Undo and Redo:
+
+- **Undo**: Press `Ctrl + Z`.
+- **Redo**: Press `Ctrl + Shift + Z`.
+
+#### Navigating Tabs:
+
+- **Navigate Left**: In normal mode, press `Shift + H`.
+- **Navigate Right**: In normal mode, press `Shift + L`.
+
+#### Markdown Visualizer:
+
+- **Open**: Press `Ctrl + MP`.
+- **Close**: Press `Ctrl + MS`.
+- **Toggle**: Press `Ctrl + MT`.
+
+#### Window Navigation:
+
+- **Navigate Left**: Press `Shift + H`.
+- **Navigate Right**: Press `Shift + L`.
+- **Navigate Up**: Press `Shift + J`.
+- **Navigate Down**: Press `Shift + K`.
+
+### Troubleshooting
+
+#### Required Language Servers:
+
+For this setup, ensure you have necessary language servers installed. Use the following commands:
+
+- For Lazy Nvim:
+  - `:TSInstall css typescript tsx`
+  - `:TSInstall astro`
+
+#### Installing Prettier:
+
+- Run `npm install --save-dev prettier`.
+
+#### Installing Astro Language Server:
+
+- Run `npm install -g astro-language-server`.
+- Run `npm install --save-dev prettier-plugin-astro`.
+- For GitHub hosted plugins, use `npm install --save-dev github:username/prettier-plugin-astro`.
+
+#### Installing Svelte Language Server:
+
+- Run `npm install -g svelte-language-server`.

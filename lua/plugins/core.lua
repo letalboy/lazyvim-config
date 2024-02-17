@@ -98,6 +98,20 @@ return {
               }
             end,
           },
+          svelte = {
+            -- Prettier formatter configuration for Svelte files
+            function()
+              return {
+                exe = "prettier", -- Assuming Prettier is in your $PATH
+                args = {
+                  "--plugin-search-dir=.",
+                  "--parser",
+                  "svelte",
+                },
+                stdin = true,
+              }
+            end,
+          },
           -- ... other filetype formatters
         },
       })
@@ -107,7 +121,7 @@ return {
         [[
         augroup FormatAutogroup
           autocmd!
-          autocmd BufWritePost *.astro FormatWrite
+          autocmd BufWritePost *.astro, *.svelte FormatWrite
         augroup END
       ]],
         true
