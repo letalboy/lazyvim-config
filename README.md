@@ -5,67 +5,73 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 ### Keyboard Shortcuts Overview
 
-#### Documentation Viewing:
+#### Basic Editing:
 
-- Press `Shift + K` in normal mode over a function to view its documentation.
+- **Open Documentation String**: `shift + k` in normal mode over a function to view the doc string.
+- **Undo**: `ctrl + z`
+- **Redo**: `ctrl + shift + z`
+- **Cut Lines**: `ctrl + x`
+- **Copy**: `ctrl + c`
+- **Paste**: `ctrl + v`
 
-#### Editing Lines:
+#### Line and Text Manipulation:
 
-- **Indent Line**: Press `Tab`.
-- **Unindent Line**: Press `Ctrl + D`.
-- **Insert Line**:
-  - At the top: Press `Ctrl + M`.
-  - At the bottom: Press `Ctrl + N`.
-- **Move Line**:
-  - Up: Press `Alt + Up Arrow`.
-  - Down: Press `Alt + Down Arrow`.
-- **Cut Line**: Press `Ctrl + X`.
-- **Copy**: Press `Ctrl + C`.
-- **Paste**: Press `Ctrl + V`.
+- **Indent Line**: `Tab`
+- **Unindent Line**: `ctrl + d`
+- **Create Line at Top**: `ctrl + m` or `ctrl + shift + m`
+- **Create Line at Bottom**: `ctrl + n` or `ctrl + shift + n`
+- **Move Lines Up**: `alt + arrow up` or `<A-Up>`
+- **Move Lines Down**: `alt + arrow down` or `<A-Down>`
+- **Disable Continuations**: Using `<Leader>o` and `<Leader>O` in normal mode.
 
-#### Undo and Redo:
+#### Tabs and Windows:
 
-- **Undo**: Press `Ctrl + Z`.
-- **Redo**: Press `Ctrl + Shift + Z`.
+- **New Tab**: `te` for new tab, `<tab>` for next tab, `<s-tab>` for previous tab.
+- **Split Window**: `ss` for horizontal split, `sv` for vertical split.
+- **Move Window**: Use `sh`, `sk`, `sj`, `sl` to move the window in respective directions.
+- **Tabs Navigation**:
+  - Left: `shift + h`
+  - Right: `shift + l`
 
-#### Navigating Tabs:
+#### Advanced Commands:
 
-- **Navigate Left**: In normal mode, press `Shift + H`.
-- **Navigate Right**: In normal mode, press `Shift + L`.
+- **Telescope Commands**:
+  - Find Files: `<leader>ff`
+  - Live Grep: `<leader>fg`
+  - Buffers: `<leader>fb`
+  - Help Tags: `<leader>fh`
+- **Markdown Visualizer**:
+  - Open: `ctrl + mp` or `<leader>mp`
+  - Close: `ctrl + ms` or `<leader>ms`
+  - Toggle: `ctrl + mt` or `<leader>mt`
 
-#### Markdown Visualizer:
+#### Screen Navigation:
 
-- **Open**: Press `Ctrl + MP`.
-- **Close**: Press `Ctrl + MS`.
-- **Toggle**: Press `Ctrl + MT`.
+- Left: `shift + h`
+- Right: `shift + l`
+- Up: `shift + j`
+- Down: `shift + k`
 
-#### Window Navigation:
+### Troubleshooting:
 
-- **Navigate Left**: Press `Shift + H`.
-- **Navigate Right**: Press `Shift + L`.
-- **Navigate Up**: Press `Shift + J`.
-- **Navigate Down**: Press `Shift + K`.
+For setting up language servers and other tools, follow these commands:
 
-### Troubleshooting
-
-#### Required Language Servers:
-
-For this setup, ensure you have necessary language servers installed. Use the following commands:
-
-- For Lazy Nvim:
-  - `:TSInstall css typescript tsx`
-  - `:TSInstall astro`
-
-#### Installing Prettier:
-
-- Run `npm install --save-dev prettier`.
-
-#### Installing Astro Language Server:
-
-- Run `npm install -g astro-language-server`.
-- Run `npm install --save-dev prettier-plugin-astro`.
-- For GitHub hosted plugins, use `npm install --save-dev github:username/prettier-plugin-astro`.
-
-#### Installing Svelte Language Server:
-
-- Run `npm install -g svelte-language-server`.
+- **Lazy Nvim**:
+  ```
+  :TSInstall css typescript tsx
+  :TSInstall astro
+  ```
+- **Prettier**:
+  ```
+  npm install --save-dev prettier
+  ```
+- **Astro Language Server**:
+  ```
+  npm install -g astro-language-server
+  npm install --save-dev prettier-plugin-astro
+  npm install --save-dev github:username/prettier-plugin-astro
+  ```
+- **Svelte Language Server**:
+  ```
+  npm install -g svelte-language-server
+  ```
