@@ -42,3 +42,22 @@ require("lspconfig").svelte.setup({
     },
   },
 })
+
+-- Check if the 'astro' filetype is recognized, and set it if not
+vim.api.nvim_create_augroup("filetype_astro", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.astro",
+  command = "set filetype=astro",
+  group = "filetype_astro",
+})
+
+-- Autocommand group for astro files
+local astro_group = vim.api.nvim_create_augroup("astro_autocommands", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*.astro",
+  callback = function()
+    -- Example: Format on save using some formatter, replace with actual Lua function or command
+    vim.cmd("silent! AstroFormatter")
+  end,
+  group = astro_group,
+})

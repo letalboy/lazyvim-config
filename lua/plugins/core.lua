@@ -3,11 +3,32 @@ local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 
 return {
   {
+    "evanleck/vim-svelte",
+    lazy = true,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
         "svelte",
         "astro",
+        "c",
+        "cpp",
+        "go",
+        "lua",
+        "python",
+        "rust",
+        "typescript",
+        "cmake",
+      },
+      highlight = {
+        enable = true, -- false will disable the whole extension
+      },
+      incremental_selection = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
       },
     },
     run = ":TSUpdate",
@@ -115,17 +136,6 @@ return {
           -- ... other filetype formatters
         },
       })
-
-      -- Optional: Set keymaps for formatting
-      vim.api.nvim_exec(
-        [[
-        augroup FormatAutogroup
-          autocmd!
-          autocmd BufWritePost *.astro, *.svelte FormatWrite
-        augroup END
-      ]],
-        true
-      )
     end,
   },
 }
