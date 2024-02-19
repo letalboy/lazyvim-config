@@ -219,6 +219,12 @@ To set up language servers, compilers, and other tools, follow these commands in
    npm install -g node-gyp
    npm install --save-dev prettier prettier-plugin-astro
    npm install -g prettier prettier-plugin-astro
+   npm install -g vscode-langservers-extracted
+   npm install -g @tailwindcss/language-server
+   npm install -g pyright
+   npm install -g vscode-json-languageserver
+   npm install -g eslint-lsp
+   npm rebuild
    ```
 
 6. **Now initialize lazyvim**
