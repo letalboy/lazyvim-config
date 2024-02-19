@@ -15,6 +15,9 @@ require("lspconfig").astro.setup({
   end,
 })
 
+local ts_install = require("nvim-treesitter.install")
+ts_install.compilers = { "clang" }
+
 require("lspconfig").svelte.setup({
   on_attach = function(client, bufnr)
     -- Optional: further configuration goes here
