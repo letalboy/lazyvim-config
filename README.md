@@ -86,7 +86,7 @@ To set up language servers, compilers, and other tools, follow these commands in
    return to shell with admin privileged and run:
 
    ```
-   git config --global --add safe.directory C:/Users/crist/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
+   git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
    ```
 
 5. **NPM Packages**:
