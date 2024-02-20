@@ -15,7 +15,7 @@ A starter template for [LazyVim](https://github.com/LazyVim/LazyVim). Refer to t
 - Svelte
 - Markdown
 
-### Theme
+### Theme:
 
 - Osaka Theme Setup To Acrilic Terminals
 
