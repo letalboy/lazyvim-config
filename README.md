@@ -2,6 +2,41 @@
 
 A starter template for [LazyVim](https://github.com/LazyVim/LazyVim). Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
+### This build covers the following:
+
+- Python
+- Rust
+- Go
+- JavaScript
+- TypeScript
+- HTML
+- CSS
+- Astro
+- Svelte
+- Markdown
+
+### Theme
+
+- Osaka Theme Setup To Acrilic Terminals
+
+Here is how it looks:
+
+![image](https://github.com/letalboy/lazyvim-config/assets/63066865/5b36cf21-08f3-403c-895f-84ebc25ea914)
+
+The wallpaper in the background is not included, it is a wallpaper engine wallpaper just to demonstrate the transparency
+
+### Auto Complete and Formatters
+
+- prettier
+- tree-sitter ("nvim-treesitter/nvim-treesitter")
+- tree-sitter-astro ("virchau13/tree-sitter-astro")
+- vim-svelte ("evanleck/vim-svelte")
+- nvimformatter ("mhartington/formatter.nvim")
+
+### It supports GIT!
+- GitSigns
+- Other Git integrations, like last mod water marks, etc..
+
 ### Keyboard Shortcuts Overview
 
 #### Basic Editing:
@@ -51,11 +86,16 @@ A starter template for [LazyVim](https://github.com/LazyVim/LazyVim). Refer to t
 - Up: `shift + j`
 - Down: `shift + k`
 
+### IMPORTANT! 
+
+To use it ensure that you have [nvim](https://neovim.io/) installed in your machine and [LazyVim](https://github.com/LazyVim/LazyVim) installed too,
+follow the instructions in each part correctly to ensure that the setup will work as intended.
+
 ### Installation and Setup Commands
 
 To set up language servers, compilers, and other tools, follow these commands in sequence:
 
-1. **Windows Subsystem for Linux (WSL)**:
+1. **Windows Subsystem for Linux (WSL)**: (Optional) 
 
    ```
    wsl --install
