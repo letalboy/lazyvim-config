@@ -25,7 +25,7 @@ Here is how it looks:
 
 The wallpaper in the background is not included, it is a wallpaper engine wallpaper just to demonstrate the transparency
 
-### Auto Complete and Formatters
+### Auto Complete and Formatters:
 
 - prettier
 - tree-sitter ("nvim-treesitter/nvim-treesitter")
@@ -33,11 +33,11 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - vim-svelte ("evanleck/vim-svelte")
 - nvimformatter ("mhartington/formatter.nvim")
 
-### It supports GIT!
+### It supports GIT!:
 - GitSigns
 - Other Git integrations, like last mod water marks, etc..
 
-### Keyboard Shortcuts Overview
+### Keyboard Shortcuts Overview:
 
 #### Basic Editing:
 
