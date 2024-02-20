@@ -166,4 +166,4 @@ For any issues encountered during the installation or usage of LazyVim, consider
 ---
 
 ### How to use ollama as copilot
-This lazy setup is prepared with support to olla using this project: https://github.com/nomnivore/ollama.nvim, so to config it download the ollama for your system here: https://ollama.com/download, after this install it and config the model that you want by following the instructuinf in the project page. Afer this your are done, so you can use it just saying `Ollama` in the prompt of lazy inside a file and you are ready to use it :)
+This lazy setup is prepared with support to ollama using this project: https://github.com/nomnivore/ollama.nvim, so to config it download the ollama for your system here: https://ollama.com/download, after this install it and config the model that you want by following the instructions in the project page. Afer this, your are done, so you can use it just saying `Ollama` in the prompt of lazy inside a file and you are ready to use it :)
