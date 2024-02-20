@@ -105,7 +105,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 open the MSYS2 terminal and use the pacman command. For example, to install the GCC compiler, you would use:
 
   ```
-  pacman -S mingw-w64-x86_64-gcc
+  pacman -S mingw-w64-ucrt-x86_64-gcc
   ```
 - For a 32-bit system, replace x86_64 with i686. Remember to update your package database and upgrade the packages with:
   ```
