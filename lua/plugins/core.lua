@@ -133,6 +133,19 @@ return {
               }
             end,
           },
+          markdown = {
+            -- Prettier formatter configuration for Markdown files
+            function()
+              return {
+                exe = "prettier", -- Assuming Prettier is in your $PATH
+                args = {
+                  "--parser",
+                  "markdown",
+                },
+                stdin = true,
+              }
+            end,
+          },
           -- ... other filetype formatters
         },
       })

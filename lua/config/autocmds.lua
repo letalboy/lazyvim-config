@@ -25,3 +25,21 @@ vim.api.nvim_create_autocmd("VimEnter", {
     require("nvim-treesitter.install").ensure_installed()
   end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "*.md", "*.astro", "*.svelte" }, -- Add other filetypes as needed
+  callback = function()
+    vim.cmd("FormatWrite")
+  end,
+})
+
+local markdown_augroup = vim.api.nvim_create_augroup("Markdown", { clear = true })
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = markdown_augroup,
+  pattern = { "*.md" },
+  callback = function(opts)
+    bufnr = opts["buf"]
+    vim.bo.textwidth = 80
+    vim.bo.formatoptions = "tcqawjp]"
+  end,
+})
