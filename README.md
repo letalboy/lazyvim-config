@@ -80,8 +80,40 @@ To set up language servers, compilers, and other tools, follow these commands in
    pacman -S mingw-w64-x86_64-clang
    pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake
    ```
+   
+4. **Add cpp to your env vars**
 
-4. **Git Configuration**:
+  - Open a folder
+  - Right click in my computer
+  - Properts
+  - Then click in advanced system configs
+  - Ambient vars
+  - Click in path
+  - Then in edit
+  - And add the following path:
+
+    ```
+    C:\msys64\mingw64\bin
+    ```
+ - Or the path that you installed it, then save and open new terminal and do the following:
+   ```
+    gcc --version
+    g++ --version
+   ```
+- It should print the versions
+- If you have installed MSYS2 and want to use its package manager pacman to install additional tools or libraries,
+open the MSYS2 terminal and use the pacman command. For example, to install the GCC compiler, you would use:
+
+  ```
+  pacman -S mingw-w64-x86_64-gcc
+  ```
+- For a 32-bit system, replace x86_64 with i686. Remember to update your package database and upgrade the packages with:
+  ```
+  pacman -Syu
+  pacman -Su
+  ```
+
+10. **Git Configuration**:
 
    return to shell with admin privileged and run:
 
@@ -89,7 +121,7 @@ To set up language servers, compilers, and other tools, follow these commands in
    git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
    ```
 
-5. **NPM Packages**:
+11. **NPM Packages**:
 
    While in the shell with admin privileges run the following to install the language servers
 
@@ -112,7 +144,7 @@ To set up language servers, compilers, and other tools, follow these commands in
    npm rebuild
    ```
 
-6. **Now initialize lazyvim**
+11. **Now initialize lazyvim**
    Ensure that you are in a administrator shell with privileges and then simple do:
 
    ```
@@ -121,7 +153,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 
    after this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
-7. **Tree-Sitter and Language Servers**:
+11. **Tree-Sitter and Language Servers**:
    in nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
    ```
    :TSInstall css typescript tsx
