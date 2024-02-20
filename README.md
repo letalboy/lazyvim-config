@@ -86,7 +86,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - Up: `shift + j`
 - Down: `shift + k`
 
-### IMPORTANT! 
+### IMPORTANT!:
 
 To use it ensure that you have [nvim](https://neovim.io/) installed in your machine and [LazyVim](https://github.com/LazyVim/LazyVim) installed too,
 follow the instructions in each part correctly to ensure that the setup will work as intended.
@@ -115,7 +115,7 @@ To set up language servers, compilers, and other tools, follow these commands in
    choco install llvm
    ```
 
-3. **Add cpp to your env vars**
+3. **Add cpp to your env vars**:
 
   - Open a folder
   - Right click in my computer
@@ -147,7 +147,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
   pacman -Su
   ```
 
-4. **Install MSys2 to manange packets**
+4. **Install MSys2 to manange packets**:
   - Go to https://www.msys2.org/
   - Then donwload this:
 
@@ -194,7 +194,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    npm rebuild
    ```
 
-8. **Verify if tree sitter is installed**
+8. **Verify if tree sitter is installed**:
 
     ```
       tree-sitter --version
@@ -227,7 +227,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 
 After completing these steps, ensure to close the privileged shell and open it again before proceeding with further updates or installations.
 
-### Troubleshooting
+### Troubleshooting:
 
 For any issues encountered during the installation or usage of LazyVim, consider the following troubleshooting steps:
 
