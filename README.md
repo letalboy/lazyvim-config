@@ -122,7 +122,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    pacman -S gcc
    ```
    ```
-   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
+   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang 
    ```
   
 5. **Git Configuration**:
