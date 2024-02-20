@@ -147,7 +147,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
    ```
    ```shell
-   npm install -g typescript node-gyp prettier prettier-plugin-astro vscode-langservers-extracted @tailwindcss/language-server pyright vscode-json-languageserver eslint-lsp
+   npm install -g typescript node-gyp prettier prettier-plugin-astro @tailwindcss/language-server pyright vscode-json-languageserver eslint-lsp
    ```
    ```shell
    npm rebuild
