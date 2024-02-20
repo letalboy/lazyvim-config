@@ -65,13 +65,17 @@ To set up language servers, compilers, and other tools, follow these commands in
 
    Run in a administrator shell
 
+   ```shell
+    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
    ```
-   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-   choco install mingw
+   ```shell
+    choco install mingw
+   ```
+   ```shell
    choco install llvm
    ```
 
-3. **Add cpp to your env vars**
+4. **Add cpp to your env vars**
 
   - Open a folder
   - Right click in my computer
@@ -86,7 +90,7 @@ To set up language servers, compilers, and other tools, follow these commands in
     C:\msys64\mingw64\bin
     ```
  - Or the path that you installed it, then save and open new terminal and do the following:
-   ```
+   ```shell
     gcc --version
     g++ --version
    ```
@@ -124,7 +128,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 
    return to shell with admin privileged and run:
 
-   ```
+   ```shell
    git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
    ```
 
@@ -132,7 +136,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 
    While in the shell with admin privileges run the following to install the language servers
 
-   ```
+   ```shell
    npm install -g typescript typescript-language-server tree-sitter-cli @astrojs/language-server windows-build-tools
    npm rebuild
    npm install -g typescript node-gyp prettier prettier-plugin-astro vscode-langservers-extracted @tailwindcss/language-server pyright vscode-json-languageserver eslint-lsp
@@ -143,7 +147,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 8. **Now initialize lazyvim**
    Ensure that you are in a administrator shell with privileges and then simple do:
 
-   ```
+   ```shell
    nvim
    ```
 
