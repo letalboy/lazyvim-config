@@ -75,7 +75,7 @@ To set up language servers, compilers, and other tools, follow these commands in
    choco install llvm
    ```
 
-4. **Add cpp to your env vars**
+3. **Add cpp to your env vars**
 
   - Open a folder
   - Right click in my computer
@@ -125,7 +125,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang 
    ```
   
-5. **Git Configuration**:
+6. **Git Configuration**:
 
    return to shell with admin privileged and run:
 
@@ -133,7 +133,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
    ```
 
-6. **NPM Packages**:
+7. **NPM Packages**:
 
    While in the shell with admin privileges run the following to install the language servers
 
@@ -154,11 +154,11 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    npm rebuild
    ```
 
-6. **Verify if tree sitter is installed**
+8. **Verify if tree sitter is installed**
 
-  ```
-    tree-sitter --version
-  ```
+    ```
+      tree-sitter --version
+    ```
 
   - if you get errors in treesitter try to update it:
     ```shell
@@ -166,7 +166,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
     ```
 
 
-6. **Now initialize lazyvim**
+9. **Now initialize lazyvim**
    Ensure that you are in a administrator shell with privileges and then simple do:
 
    ```shell
@@ -175,7 +175,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 
    after this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
-7. **Tree-Sitter and Language Servers**:
+10. **Tree-Sitter and Language Servers**:
    in nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
    ```
    :TSInstall html javascript css typescript tsx astro
