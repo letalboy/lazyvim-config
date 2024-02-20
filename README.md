@@ -1,5 +1,3 @@
-
-
 A starter template for [LazyVim](https://github.com/LazyVim/LazyVim). Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
 ### This build covers the following:
@@ -34,6 +32,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - nvimformatter ("mhartington/formatter.nvim")
 
 ### It supports GIT!:
+
 - GitSigns
 - Other Git integrations, like last mod water marks, etc..
 
@@ -95,7 +94,7 @@ follow the instructions in each part correctly to ensure that the setup will wor
 
 To set up language servers, compilers, and other tools, follow these commands in sequence:
 
-1. **Windows Subsystem for Linux (WSL)**: (Optional) 
+1. **Windows Subsystem for Linux (WSL)**: (Optional)
 
    ```
    wsl --install
@@ -108,39 +107,43 @@ To set up language servers, compilers, and other tools, follow these commands in
    ```shell
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
    ```
+
    ```shell
     choco install mingw
    ```
+
    ```shell
    choco install llvm
    ```
 
 3. **Add cpp to your env vars**:
 
-  - Open a folder
-  - Right click in my computer
-  - Properts
-  - Then click in advanced system configs
-  - Ambient vars
-  - Click in path
-  - Then in edit
-  - And add the following path:
+- Open a folder
+- Right click in my computer
+- Properts
+- Then click in advanced system configs
+- Ambient vars
+- Click in path
+- Then in edit
+- And add the following path:
 
-    ```
-    C:\msys64\mingw64\bin
-    ```
- - Or the path that you installed it, then save and open new terminal and do the following:
-   ```shell
-    gcc --version
-    g++ --version
-   ```
+  ```
+  C:\msys64\mingw64\bin
+  ```
+
+- Or the path that you installed it, then save and open new terminal and do the following:
+  ```shell
+   gcc --version
+   g++ --version
+  ```
 - It should print the versions
 - If you have installed MSYS2 and want to use its package manager pacman to install additional tools or libraries,
-open the MSYS2 terminal and use the pacman command. For example, to install the GCC compiler, you would use:
+  open the MSYS2 terminal and use the pacman command. For example, to install the GCC compiler, you would use:
 
   ```
   pacman -S mingw-w64-ucrt-x86_64-gcc
   ```
+
 - For a 32-bit system, replace x86_64 with i686. Remember to update your package database and upgrade the packages with:
   ```
   pacman -Syu
@@ -148,23 +151,26 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
   ```
 
 4. **Install MSys2 to manange packets**:
-  - Go to https://www.msys2.org/
-  - Then donwload this:
+
+- Go to https://www.msys2.org/
+- Then donwload this:
 
 ![image](https://github.com/letalboy/lazyvim-config/assets/63066865/86de645e-f54a-4d11-9834-98fccd67c1e1)
 
-  - Install it as default, you can follow the instructions in the msys2.org
+- Install it as default, you can follow the instructions in the msys2.org
 
 5. **Msys2 and MinGW**:
 
    Open Msys2 shell and run
+
    ```
    pacman -S gcc
    ```
+
    ```
-   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang 
+   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
    ```
-  
+
 6. **Git Configuration**:
 
    return to shell with admin privileged and run:
@@ -177,34 +183,41 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 
    While in the shell with admin privileges run the following to install the language servers
 
-   ```
+   ```shell
    npm install -g windows-build-tools
    ```
+
+   ```shell
+   npm i -g vscode-langservers-extracted
+   ```
+
    ```shell
    npm rebuild
    ```
+
    ```shell
-   npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro 
+   npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
    ```
+
    ```shell
-   npm install -g typescript typescript-language-server node-gyp @astrojs/language-server prettier prettier-plugin-astro eslint-lsp tree-sitter-cli @tailwindcss/language-server pyright vscode-json-languageserver 
+   npm install -g typescript typescript-language-server node-gyp @astrojs/language-server prettier prettier-plugin-astro eslint-lsp tree-sitter-cli @tailwindcss/language-server pyright vscode-json-languageserver
 
    ```
+
    ```shell
    npm rebuild
    ```
 
 8. **Verify if tree sitter is installed**:
 
-    ```
-      tree-sitter --version
-    ```
+   ```
+     tree-sitter --version
+   ```
 
-  - if you get errors in treesitter try to update it:
-    ```shell
-      npm update -g tree-sitter-cli
-    ```
-
+- if you get errors in treesitter try to update it:
+  ```shell
+    npm update -g tree-sitter-cli
+  ```
 
 9. **Now initialize lazyvim**
    Ensure that you are in a administrator shell with privileges and then simple do:
@@ -216,14 +229,15 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    after this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
 10. **Tree-Sitter and Language Servers**:
-   in nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
-   ```
-   :TSInstall html javascript css typescript tsx astro
-   :TSUpdate
-   :TSInstall c cpp
-   :TSInstallSync
-   :checkhealth nvim-treesitter
-   ```
+    in nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
+
+```
+:TSInstall html javascript css typescript tsx astro
+:TSUpdate
+:TSInstall c cpp
+:TSInstallSync
+:checkhealth nvim-treesitter
+```
 
 After completing these steps, ensure to close the privileged shell and open it again before proceeding with further updates or installations.
 
@@ -256,4 +270,5 @@ For any issues encountered during the installation or usage of LazyVim, consider
 ---
 
 ### How to use ollama as copilot
+
 This lazy setup is prepared with support to ollama using this project: https://github.com/nomnivore/ollama.nvim, so to config it download the ollama for your system here: https://ollama.com/download, after this install it and config the model that you want by following the instructions in the project page. Afer this, your are done, so you can use it just saying `Ollama` in the prompt of lazy inside a file and you are ready to use it :)
