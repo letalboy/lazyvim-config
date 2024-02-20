@@ -162,3 +162,8 @@ For any issues encountered during the installation or usage of LazyVim, consider
 9. **Compatibility with Other Tools**: Ensure there are no conflicts between LazyVim and other tools or plugins you have installed. Incompatibilities can often cause unexpected behavior.
 
 10. **Operating System Specific Issues**: Be aware of any peculiarities with your operating system, especially if you are using WSL on Windows, as certain features or paths might require specific attention.
+
+---
+
+### How to use ollama as copilot
+This lazy setup is prepared with support to olla using this project: https://github.com/nomnivore/ollama.nvim, so to config it download the ollama for your system here: https://ollama.com/download, after this install it and config the model that you want by following the instructuinf in the project page. Afer this your are done, so you can use it just saying `Ollama` in the prompt of lazy inside a file and you are ready to use it :)
