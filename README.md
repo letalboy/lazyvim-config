@@ -118,13 +118,14 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 5. **Msys2 and MinGW**:
 
    Open Msys2 shell and run
-
    ```
    pacman -S gcc
+   ```
+   ```
    pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
    ```
   
-6. **Git Configuration**:
+5. **Git Configuration**:
 
    return to shell with admin privileged and run:
 
@@ -132,19 +133,27 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
    ```
 
-7. **NPM Packages**:
+6. **NPM Packages**:
 
    While in the shell with admin privileges run the following to install the language servers
 
-   ```shell
+   ```
    npm install -g typescript typescript-language-server tree-sitter-cli @astrojs/language-server windows-build-tools
+   ```
+   ```shell
    npm rebuild
-   npm install -g typescript node-gyp prettier prettier-plugin-astro vscode-langservers-extracted @tailwindcss/language-server pyright vscode-json-languageserver eslint-lsp
+   ```
+   ```shell
    npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
+   ```
+   ```shell
+   npm install -g typescript node-gyp prettier prettier-plugin-astro vscode-langservers-extracted @tailwindcss/language-server pyright vscode-json-languageserver eslint-lsp
+   ```
+   ```shell
    npm rebuild
    ```
 
-8. **Now initialize lazyvim**
+6. **Now initialize lazyvim**
    Ensure that you are in a administrator shell with privileges and then simple do:
 
    ```shell
@@ -153,7 +162,7 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 
    after this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
-9. **Tree-Sitter and Language Servers**:
+7. **Tree-Sitter and Language Servers**:
    in nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
    ```
    :TSInstall html javascript css typescript tsx astro
