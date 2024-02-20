@@ -71,17 +71,7 @@ To set up language servers, compilers, and other tools, follow these commands in
    choco install llvm
    ```
 
-3. **Msys2 and MinGW**:
-
-   Open Msys2 shell and run
-
-   ```
-   pacman -S gcc
-   pacman -S mingw-w64-x86_64-clang
-   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake
-   ```
-   
-4. **Add cpp to your env vars**
+3. **Add cpp to your env vars**
 
   - Open a folder
   - Right click in my computer
@@ -113,7 +103,24 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
   pacman -Su
   ```
 
-10. **Git Configuration**:
+4. **Install MSys2 to manange packets**
+  - Go to https://www.msys2.org/
+  - Then donwload this:
+
+![image](https://github.com/letalboy/lazyvim-config/assets/63066865/86de645e-f54a-4d11-9834-98fccd67c1e1)
+
+  - Install it as default, you can follow the instructions in the msys2.org
+
+5. **Msys2 and MinGW**:
+
+   Open Msys2 shell and run
+
+   ```
+   pacman -S gcc
+   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
+   ```
+  
+6. **Git Configuration**:
 
    return to shell with admin privileged and run:
 
@@ -121,30 +128,19 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
    ```
 
-11. **NPM Packages**:
+7. **NPM Packages**:
 
    While in the shell with admin privileges run the following to install the language servers
 
    ```
-   npm install -g typescript typescript-language-server
-   npm install -g tree-sitter-cli
-   npm install -g @astrojs/language-server
-   npm install --global windows-build-tools
+   npm install -g typescript typescript-language-server tree-sitter-cli @astrojs/language-server windows-build-tools
    npm rebuild
-   npm install -g typescript
-   npm install --save-dev typescript typescript-language-server
-   npm install -g node-gyp
-   npm install --save-dev prettier prettier-plugin-astro
-   npm install -g prettier prettier-plugin-astro
-   npm install -g vscode-langservers-extracted
-   npm install -g @tailwindcss/language-server
-   npm install -g pyright
-   npm install -g vscode-json-languageserver
-   npm install -g eslint-lsp
+   npm install -g typescript node-gyp prettier prettier-plugin-astro vscode-langservers-extracted @tailwindcss/language-server pyright vscode-json-languageserver eslint-lsp
+   npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
    npm rebuild
    ```
 
-11. **Now initialize lazyvim**
+8. **Now initialize lazyvim**
    Ensure that you are in a administrator shell with privileges and then simple do:
 
    ```
@@ -153,17 +149,13 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
 
    after this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
-11. **Tree-Sitter and Language Servers**:
+9. **Tree-Sitter and Language Servers**:
    in nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
    ```
-   :TSInstall css typescript tsx
-   :TSInstall astro
+   :TSInstall html javascript css typescript tsx astro
    :TSUpdate
-   :TSInstall cpp
-   :TSInstall c
-   :TSInstall html
+   :TSInstall c cpp
    :TSInstallSync
-   :TSInstall javascript
    :checkhealth nvim-treesitter
    ```
 
