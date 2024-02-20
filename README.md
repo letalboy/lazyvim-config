@@ -138,20 +138,33 @@ open the MSYS2 terminal and use the pacman command. For example, to install the 
    While in the shell with admin privileges run the following to install the language servers
 
    ```
-   npm install -g typescript typescript-language-server tree-sitter-cli @astrojs/language-server windows-build-tools
+   npm install -g windows-build-tools
    ```
    ```shell
    npm rebuild
    ```
    ```shell
-   npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
+   npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro 
    ```
    ```shell
-   npm install -g typescript node-gyp prettier prettier-plugin-astro @tailwindcss/language-server pyright vscode-json-languageserver eslint-lsp
+   npm install -g typescript typescript-language-server node-gyp @astrojs/language-server prettier prettier-plugin-astro eslint-lsp tree-sitter-cli @tailwindcss/language-server pyright vscode-json-languageserver 
+
    ```
    ```shell
    npm rebuild
    ```
+
+6. **Verify if tree sitter is installed**
+
+  ```
+    tree-sitter --version
+  ```
+
+  - if you get errors in treesitter try to update it:
+    ```shell
+      npm update -g tree-sitter-cli
+    ```
+
 
 6. **Now initialize lazyvim**
    Ensure that you are in a administrator shell with privileges and then simple do:
