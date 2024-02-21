@@ -1,167 +1,119 @@
--- Check the operating system
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+-- Function to check the operating system
+local function is_windows()
+  return vim.loop.os_uname().sysname == "Windows_NT"
+end
 
-return {
-  {
-    "evanleck/vim-svelte",
-    lazy = true,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "svelte",
-        "astro",
-        "c",
-        "cpp",
-        "go",
-        "lua",
-        "python",
-        "rust",
-        "typescript",
-        "cmake",
-      },
-      highlight = {
-        enable = true, -- false will disable the whole extension
-      },
-      incremental_selection = {
-        enable = true,
-      },
-      indent = {
-        enable = true,
-      },
+-- Setup function for nvim-treesitter
+local function setup_treesitter()
+  require("nvim-treesitter.configs").setup({
+    ensure_installed = {
+      "svelte",
+      "astro",
+      "c",
+      "cpp",
+      "go",
+      "lua",
+      "python",
+      "rust",
+      "typescript",
+      "cmake",
     },
-  },
-  {
-    "virchau13/tree-sitter-astro",
-    run = "tree-sitter generate",
-  },
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*", -- To use a specific version
-    config = function()
-      require("toggleterm").setup({
-        size = 20,
-        open_mapping = [[<c-\>]],
-        hide_numbers = true,
-        shade_filetypes = {},
-        shade_terminals = true,
-        shading_factor = 2,
-        start_in_insert = true,
-        direction = "horizontal",
-        close_on_exit = true,
-        shell = vim.o.shell,
-      })
-    end,
-  },
-  {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup({
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      })
-    end,
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("gitsigns").setup()
-      vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
-    end,
-  },
+    highlight = {
+      enable = true,
+    },
+    incremental_selection = {
+      enable = true,
+    },
+    indent = {
+      enable = true,
+    },
+  })
+end
+
+-- Setup function for toggleterm.nvim
+local function setup_toggleterm()
+  require("toggleterm").setup({
+    size = 20,
+    open_mapping = [[<c-\>]],
+    hide_numbers = true,
+    shade_filetypes = {},
+    shade_terminals = true,
+    shading_factor = 2,
+    start_in_insert = true,
+    direction = "horizontal",
+    close_on_exit = true,
+    shell = vim.o.shell,
+  })
+end
+
+-- Setup function for project.nvim
+local function setup_project()
+  require("project_nvim").setup({
+    -- Configuration options here or leave empty for default settings
+  })
+end
+
+-- Setup function for gitsigns.nvim
+local function setup_gitsigns()
+  require("gitsigns").setup()
+  vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
+end
+
+-- Setup function for markdown-preview.nvim
+local function setup_markdown_preview()
+  vim.g.mkdp_auto_start = 1
+end
+
+-- Setup function for formatter.nvim
+local function setup_formatter()
+  local formatter = require("formatter")
+  formatter.setup({
+    filetype = {
+      astro = {
+        function()
+          return {
+            exe = "prettier",
+            args = { "--plugin-search-dir=.", "--parser", "astro", "--plugin", "prettier-plugin-astro" },
+            stdin = true,
+          }
+        end,
+      },
+      svelte = {
+        function()
+          return { exe = "prettier", args = { "--plugin-search-dir=.", "--parser", "svelte" }, stdin = true }
+        end,
+      },
+      markdown = {
+        function()
+          return { exe = "prettier", args = { "--parser", "markdown" }, stdin = true }
+        end,
+      },
+      -- Additional filetype formatters here
+    },
+  })
+end
+
+-- Plugin specifications
+return {
+  { "evanleck/vim-svelte", lazy = true },
+  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = setup_treesitter },
+  { "virchau13/tree-sitter-astro", run = is_windows() and "tree-sitter generate" or "tree-sitter generate" },
+  { "akinsho/toggleterm.nvim", config = setup_toggleterm },
+  { "ahmedkhalf/project.nvim", config = setup_project },
+  { "lewis6991/gitsigns.nvim", config = setup_gitsigns },
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
-    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
-    run = function()
-      -- Use a different build command depending on the OS
-      if is_windows then
-        vim.fn.system({ "cmd", "/c", "cd app && npm install" })
-      else
-        vim.fn.system({ "sh", "-c", "cd app && npm install" })
-      end
-    end,
-    config = function()
-      vim.g.mkdp_auto_start = 1
-    end,
+    run = (is_windows() and "cd app && npm install" or "cd app && npm install"),
+    config = setup_markdown_preview,
   },
-  {
-    "numToStr/Comment.nvim",
-    opts = {
-      -- add any options here
-    },
-    lazy = false,
-  },
-  {
-    "mhartington/formatter.nvim",
-    config = function()
-      local formatter = require("formatter")
-
-      -- Configuration for Prettier with Astro support
-      formatter.setup({
-        filetype = {
-          astro = {
-            -- Prettier formatter configuration for Astro files
-            function()
-              return {
-                exe = "prettier", -- Assuming Prettier is in your $PATH
-                args = {
-                  "--plugin-search-dir=.",
-                  "--parser",
-                  "astro",
-                  "--plugin",
-                  "prettier-plugin-astro",
-                },
-                stdin = true,
-              }
-            end,
-          },
-          svelte = {
-            -- Prettier formatter configuration for Svelte files
-            function()
-              return {
-                exe = "prettier", -- Assuming Prettier is in your $PATH
-                args = {
-                  "--plugin-search-dir=.",
-                  "--parser",
-                  "svelte",
-                },
-                stdin = true,
-              }
-            end,
-          },
-          markdown = {
-            -- Prettier formatter configuration for Markdown files
-            function()
-              return {
-                exe = "prettier", -- Assuming Prettier is in your $PATH
-                args = {
-                  "--parser",
-                  "markdown",
-                },
-                stdin = true,
-              }
-            end,
-          },
-          -- ... other filetype formatters
-        },
-      })
-    end,
-  },
-  -- The completion plugin
+  { "numToStr/Comment.nvim" },
+  { "mhartington/formatter.nvim", config = setup_formatter },
   { "hrsh7th/nvim-cmp" },
-  -- Buffer completions
   { "hrsh7th/cmp-buffer" },
-  -- Path completions
   { "hrsh7th/cmp-path" },
-  -- Command line completions
   { "hrsh7th/cmp-cmdline" },
-  -- LSP completions
   { "hrsh7th/cmp-nvim-lsp" },
-  -- Snippet completions
   { "saadparwaiz1/cmp_luasnip" },
-  -- Snippet engine
   { "L3MON4D3/LuaSnip" },
 }
