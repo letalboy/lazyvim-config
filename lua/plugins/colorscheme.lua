@@ -1,5 +1,4 @@
 return {
-
   {
     "craftzdog/solarized-osaka.nvim",
     branch = "osaka",
