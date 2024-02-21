@@ -67,6 +67,14 @@ require("lspconfig").astro.setup({
   -- Other configurations...
 })
 
+require("lspconfig").svelte.setup({
+  on_attach = function(client, bufnr)
+    -- Custom logic for Astro files
+  end,
+  filetypes = { "svelte" },
+  -- Other configurations...
+})
+
 -- Setup for TypeScript and JavaScript files
 require("lspconfig").tsserver.setup({
   on_attach = function(client, bufnr)
@@ -87,7 +95,7 @@ require("lspconfig").tsserver.setup({
 require("null-ls").setup({
   sources = {
     require("null-ls").builtins.formatting.prettier.with({
-      filetypes = { "astro", "javascript", "typescript" },
+      filetypes = { "astro", "svelte", "javascript", "typescript" },
     }),
   },
 })
@@ -101,6 +109,12 @@ null_ls.setup({
     }),
     null_ls.builtins.diagnostics.eslint.with({
       extra_filetypes = { "astro" },
+    }),
+    null_ls.builtins.formatting.prettier.with({
+      extra_filetypes = { "svelte" },
+    }),
+    null_ls.builtins.diagnostics.eslint.with({
+      extra_filetypes = { "svelte" },
     }),
   },
 })
