@@ -31,7 +31,6 @@ return {
         enable = true,
       },
     },
-    run = ":TSUpdate",
   },
   {
     "virchau13/tree-sitter-astro",
@@ -151,4 +150,18 @@ return {
       })
     end,
   },
+  -- The completion plugin
+  { "hrsh7th/nvim-cmp" },
+  -- Buffer completions
+  { "hrsh7th/cmp-buffer" },
+  -- Path completions
+  { "hrsh7th/cmp-path" },
+  -- Command line completions
+  { "hrsh7th/cmp-cmdline" },
+  -- LSP completions
+  { "hrsh7th/cmp-nvim-lsp" },
+  -- Snippet completions
+  { "saadparwaiz1/cmp_luasnip" },
+  -- Snippet engine
+  { "L3MON4D3/LuaSnip" },
 }

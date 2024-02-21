@@ -1,66 +1,76 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
-require("nvim-treesitter.configs").setup({
-  -- Ensure 'astro' is added to your 'ensure_installed' list
-  ensure_installed = { "astro", "svelte", "javascript", "typescript", "css", "html" },
 
-  highlight = {
-    enable = true, -- false will disable the whole extension
+-- Setup nvim-cmp.
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
   },
+  mapping = cmp.mapping.preset.insert({
+    ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+  }, {
+    { name = "buffer" },
+  }),
 })
 
-require("lspconfig").astro.setup({
-  on_attach = function(client, bufnr)
-    -- Optional: further configuration goes here
-  end,
+-- Setup lspconfig.
+local lspconfig = require("lspconfig")
+
+-- Common on_attach function to run for every LSP server.
+local on_attach = function(client, bufnr)
+  -- Customize LSP key mappings here
+end
+
+-- Setup LSP servers.
+lspconfig.tsserver.setup({
+  on_attach = on_attach,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
+  -- Other tsserver specific settings can be added here
 })
 
-local ts_install = require("nvim-treesitter.install")
-ts_install.compilers = { "clang" }
-
-require("lspconfig").svelte.setup({
-  on_attach = function(client, bufnr)
-    -- Optional: further configuration goes here
-    -- Example: setting up buffer keymaps
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
-  end,
+-- Add additional servers here. For example, for Lua:
+lspconfig.lua_ls.setup({
+  on_attach = on_attach,
   settings = {
-    svelte = {
-      plugin = {
-        svelte = {
-          -- put svelte plugin settings here
-          -- Example: enable all the language features
-          languageFeatures = {
-            implementation = true,
-            colorPresentations = true,
-            documentSymbols = true,
-            semanticTokens = true,
-            diagnostics = true,
-            rename = true,
-            typeDefinition = true,
-            codeActions = true,
-          },
-        },
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
       },
     },
   },
 })
 
--- Check if the 'astro' filetype is recognized, and set it if not
-vim.api.nvim_create_augroup("filetype_astro", { clear = true })
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.astro",
-  command = "set filetype=astro",
-  group = "filetype_astro",
+-- Treesitter configuration
+require("nvim-treesitter.configs").setup({
+  ensure_installed = { "astro", "svelte", "javascript", "typescript", "css", "html" },
+  sync_install = false,
+  auto_install = true,
+  highlight = {
+    enable = true,
+  },
 })
 
--- Autocommand group for astro files
-local astro_group = vim.api.nvim_create_augroup("astro_autocommands", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*.astro",
+-- Autocommands for automatically setting up LSP for certain file types
+vim.api.nvim_create_augroup("LSP", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = "LSP",
+  pattern = "astro",
   callback = function()
-    -- Example: Format on save using some formatter, replace with actual Lua function or command
-    vim.cmd("silent! AstroFormatter")
+    lspconfig.tsserver.setup({
+      on_attach = on_attach,
+    })
   end,
-  group = astro_group,
 })
+
+-- Additional plugins or settings can be configured below.
