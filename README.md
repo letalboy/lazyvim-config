@@ -116,6 +116,10 @@ To set up language servers, compilers, and other tools, follow these commands in
    choco install llvm
    ```
 
+   ```shell
+   choco install fd
+   ```
+
 3. **Add cpp to your env vars**:
 
 - Open a folder
