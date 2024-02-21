@@ -21,7 +21,6 @@ local function setup_treesitter()
       "python",
       "rust",
       "regex",
-      "go",
       "scss",
       "typescript",
       "cmake",
