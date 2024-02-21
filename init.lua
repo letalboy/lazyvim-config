@@ -83,7 +83,7 @@ require("lspconfig").tsserver.setup({
   -- Other tsserver configurations
 })
 
--- Assuming you have null-ls and Prettier installed and configured globally
+-- Must have null-ls and Prettier installed and configured globally
 require("null-ls").setup({
   sources = {
     require("null-ls").builtins.formatting.prettier.with({
