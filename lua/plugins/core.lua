@@ -7,6 +7,11 @@ end
 local function setup_treesitter()
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
+      "html",
+      "markdown",
+      "markdown_inline",
+      "vim",
+      "json",
       "svelte",
       "astro",
       "c",
@@ -15,8 +20,12 @@ local function setup_treesitter()
       "lua",
       "python",
       "rust",
+      "regex",
+      "go",
+      "scss",
       "typescript",
       "cmake",
+      "query",
     },
     highlight = {
       enable = true,
