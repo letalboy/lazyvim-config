@@ -47,6 +47,28 @@ lspconfig.lua_ls.setup({
   },
 })
 
+-- Setup Pyright for Python development
+lspconfig.pyright.setup({
+  on_attach = function(client, bufnr)
+    -- Custom logic to enhance the server's capabilities can be added here
+    -- For example, enabling document formatting only if Pyright supports it
+    client.server_capabilities.document_formatting = true
+    client.server_capabilities.document_range_formatting = true
+  end,
+  filetypes = { "python" }, -- Specify that this setup is for Python files
+  -- Pyright specific settings can be added here
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "basic", -- Options: "off", "basic", "strict"
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
+
 -- Disable tailwindcss language server for .astro files
 require("lspconfig").tailwindcss.setup({
   on_attach = function(client, bufnr)
@@ -75,21 +97,21 @@ require("lspconfig").svelte.setup({
   -- Other configurations...
 })
 
--- Setup for TypeScript and JavaScript files
-require("lspconfig").tsserver.setup({
-  on_attach = function(client, bufnr)
-    -- Your on_attach function body
-  end,
-  filetypes = {
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-  },
-  -- Other tsserver configurations
-})
+-- -- Setup for TypeScript and JavaScript files
+-- require("lspconfig").tsserver.setup({
+--   on_attach = function(client, bufnr)
+--     -- Your on_attach function body
+--   end,
+--   filetypes = {
+--     "typescript",
+--     "typescriptreact",
+--     "typescript.tsx",
+--     "javascript",
+--     "javascriptreact",
+--     "javascript.jsx",
+--   },
+--   -- Other tsserver configurations
+-- })
 
 -- Must have null-ls and Prettier installed and configured globally
 require("null-ls").setup({
