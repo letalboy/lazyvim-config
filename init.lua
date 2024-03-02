@@ -92,19 +92,6 @@ require("null-ls").setup({
   },
 })
 
--- Use 'null-ls' for linting and formatting support
-local null_ls = require("null-ls")
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.prettier.with({
-      extra_filetypes = { "astro" },
-    }),
-    null_ls.builtins.diagnostics.eslint.with({
-      extra_filetypes = { "astro" },
-    }),
-  },
-})
-
 -- Treesitter configuration
 require("nvim-treesitter.configs").setup({
   ensure_installed = { "astro", "svelte", "javascript", "typescript", "css", "html" },

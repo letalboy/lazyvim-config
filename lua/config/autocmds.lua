@@ -17,14 +17,15 @@ vim.cmd([[
   autocmd FileType svelte highlight link htmlEndTag Keyword
   autocmd BufNewFile,BufRead *.svelte setlocal filetype=svelte
   autocmd BufNewFile, BufRead *.astro setlocal filetype=astro
+  autocmd BufNewFile, BufRead *.md setlocal filetype=markdown
 ]])
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  pattern = "*",
-  callback = function()
-    require("nvim-treesitter.install").ensure_installed()
-  end,
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   pattern = "*",
+--   callback = function()
+--     require("nvim-treesitter.install").ensure_installed()
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = { "*.md", "*.astro", "*.svelte" }, -- Add other filetypes as needed
@@ -33,13 +34,13 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end,
 })
 
-local markdown_augroup = vim.api.nvim_create_augroup("Markdown", { clear = true })
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  group = markdown_augroup,
-  pattern = { "*.md" },
-  callback = function(opts)
-    bufnr = opts["buf"]
-    vim.bo.textwidth = 80
-    vim.bo.formatoptions = "tcqawjp]"
-  end,
-})
+-- local markdown_augroup = vim.api.nvim_create_augroup("Markdown", { clear = true })
+-- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+--   group = markdown_augroup,
+--   pattern = { "*.md" },
+--   callback = function(opts)
+--     bufnr = opts["buf"]
+--     vim.bo.textwidth = 80
+--     vim.bo.formatoptions = "tcqawjp]"
+--   end,
+-- })

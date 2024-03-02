@@ -92,11 +92,11 @@ local function setup_formatter()
           return { exe = "prettier", args = { "--plugin-search-dir=.", "--parser", "svelte" }, stdin = true }
         end,
       },
-      markdown = {
-        function()
-          return { exe = "prettier", args = { "--parser", "markdown" }, stdin = true }
-        end,
-      },
+      -- markdown = {
+      --   function()
+      --     return { exe = "prettier", args = { "--parser", "markdown" }, stdin = true }
+      --   end,
+      -- },
       -- Additional filetype formatters here
     },
   })
@@ -112,9 +112,11 @@ return {
   { "lewis6991/gitsigns.nvim", config = setup_gitsigns },
   {
     "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-    run = (is_windows() and "cd app && npm install" or "cd app && npm install"),
-    config = setup_markdown_preview,
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
   { "numToStr/Comment.nvim" },
   { "mhartington/formatter.nvim", config = setup_formatter },
