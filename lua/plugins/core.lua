@@ -3,42 +3,6 @@ local function is_windows()
   return vim.loop.os_uname().sysname == "Windows_NT"
 end
 
--- Setup function for nvim-treesitter
-local function setup_treesitter()
-  require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-      "html",
-      "markdown",
-      "markdown_inline",
-      "vim",
-      "json",
-      "svelte",
-      "astro",
-      "c",
-      "cpp",
-      "go",
-      "lua",
-      "python",
-      "rust",
-      "regex",
-      "go",
-      "scss",
-      "typescript",
-      "cmake",
-      "query",
-    },
-    highlight = {
-      enable = true,
-    },
-    incremental_selection = {
-      enable = true,
-    },
-    indent = {
-      enable = true,
-    },
-  })
-end
-
 -- Setup function for toggleterm.nvim
 local function setup_toggleterm()
   require("toggleterm").setup({
@@ -89,7 +53,11 @@ local function setup_formatter()
       },
       svelte = {
         function()
-          return { exe = "prettier", args = { "--plugin-search-dir=.", "--parser", "svelte" }, stdin = true }
+          return {
+            exe = "prettier",
+            args = { "--plugin-search-dir=.", "--parser", "svelte", "--plugin", "prettier-plugin-svelte" },
+            stdin = true,
+          }
         end,
       },
       -- markdown = {

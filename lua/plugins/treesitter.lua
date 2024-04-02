@@ -5,29 +5,38 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "astro",
+        "c",
         "cmake",
         "cpp",
         "css",
         "fish",
         "gitignore",
         "go",
+        "python",
         "graphql",
         "http",
         "java",
         "php",
+        "query",
         "rust",
+        "regex",
+        "lua",
         "scss",
         "sql",
+        "vim",
         "svelte",
-        "javascript", -- Added from your config
-        "typescript", -- Added from your config
-        "html", -- Added from your config
+        "astro",
+        "markdown",
+        "markdown_inline",
+        "javascript",
+        "typescript",
+        "html",
+        "json",
       },
-      sync_install = false, -- From your config
-      auto_install = true, -- From your config
+      sync_install = false,
+      auto_install = true,
       highlight = {
-        enable = true, -- From your config
+        enable = true,
       },
       query_linter = {
         enable = true,
