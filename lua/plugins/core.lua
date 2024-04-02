@@ -118,6 +118,14 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
+  {
+    "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup({
+        -- your customization here
+      })
+    end,
+  },
   { "numToStr/Comment.nvim" },
   { "mhartington/formatter.nvim", config = setup_formatter },
   { "hrsh7th/nvim-cmp" },
