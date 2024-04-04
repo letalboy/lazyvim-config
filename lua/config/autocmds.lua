@@ -18,6 +18,7 @@ vim.cmd([[
   autocmd BufNewFile,BufRead *.svelte setlocal filetype=svelte
   autocmd BufNewFile, BufRead *.astro setlocal filetype=astro
   autocmd BufNewFile, BufRead *.md setlocal filetype=markdown
+  au BufRead,BufNewFile *.rs set filetype=rust
 ]])
 
 -- vim.api.nvim_create_autocmd("VimEnter", {

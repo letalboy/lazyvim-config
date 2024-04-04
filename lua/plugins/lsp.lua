@@ -14,6 +14,7 @@ return {
         "svelte-language-server",
         "css-lsp",
         "astro-language-server",
+        "rust-analyzer",
       })
     end,
   },
@@ -37,6 +38,16 @@ return {
       inlay_hints = { enabled = false },
       ---@type lspconfig.options
       servers = {
+        rust_analyzer = {
+          -- Rust Analyzer settings and options here
+          settings = {
+            ["rust-analyzer"] = {
+              -- Example configuration:
+              cargo = { loadOutDirsFromCheck = true },
+              procMacro = { enable = true },
+            },
+          },
+        },
         cssls = {},
         tailwindcss = {
           root_dir = function(...)
