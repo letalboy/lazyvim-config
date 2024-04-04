@@ -10,8 +10,10 @@ return {
         "shellcheck",
         "shfmt",
         "tailwindcss-language-server",
-        "typescript-language-server",
+        "typescript-language-server", -- This already supports TSX/JSX for React
+        "svelte-language-server",
         "css-lsp",
+        "astro-language-server",
       })
     end,
   },
@@ -45,6 +47,7 @@ return {
           root_dir = function(...)
             return require("lspconfig.util").root_pattern(".git")(...)
           end,
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "svelte", "astro" },
           single_file_support = false,
           settings = {
             typescript = {
@@ -76,6 +79,86 @@ return {
           settings = {
             yaml = {
               keyOrdering = false,
+            },
+          },
+        },
+        svelte = {
+          -- Add any additional configuration settings here
+          on_attach = my_custom_on_attach_function,
+          capabilities = my_custom_capabilities,
+          -- Svelte specific configuration options
+          settings = {
+            svelte = {
+              plugin = {
+                svelte = {
+                  -- Enable or disable specific features of the Svelte language server
+                  enable = true,
+                  -- More options can be configured as per the language server's documentation
+                },
+                -- You can also configure TypeScript and JavaScript settings if needed
+                typescript = {
+                  inlayHints = {
+                    includeInlayParameterNameHints = "all",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                  },
+                },
+                javascript = {
+                  inlayHints = {
+                    includeInlayParameterNameHints = "all",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        astro = {
+          -- Add any additional configuration settings here
+          on_attach = my_custom_on_attach_function,
+          capabilities = my_custom_capabilities,
+          -- Astro specific configuration options
+          settings = {
+            astro = {
+              plugin = {
+                astro = {
+                  -- Enable or disable specific features of the Astro language server
+                  enable = true,
+                  -- More options can be configured as per the language server's documentation
+                },
+                -- You can also configure TypeScript and JavaScript settings if needed
+                typescript = {
+                  inlayHints = {
+                    includeInlayParameterNameHints = "all",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                  },
+                },
+                javascript = {
+                  inlayHints = {
+                    includeInlayParameterNameHints = "all",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                  },
+                },
+              },
             },
           },
         },
