@@ -239,6 +239,22 @@ return {
           },
         },
       },
+      pyright = { -- Add Pyright configuration
+        root_dir = function(...)
+          return require("lspconfig.util").root_pattern(".git")(...)
+        end,
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = "workspace",
+              typeCheckingMode = "basic",
+            },
+          },
+        },
+      },
+
       setup = {},
     },
   },
