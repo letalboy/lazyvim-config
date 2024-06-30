@@ -2,6 +2,28 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+local telescope_builtin = require("telescope.builtin")
+
+-- Key bindings for navigation (can be customized)
+vim.api.nvim_set_keymap(
+  "n",
+  "gd",
+  ':lua require"telescope.builtin".lsp_definitions{}<CR>',
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "gr",
+  ':lua require"telescope.builtin".lsp_references{}<CR>',
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "gi",
+  ':lua require"telescope.builtin".lsp_implementations{}<CR>',
+  { noremap = true, silent = true }
+)
+
 -- Disable continuations
 vim.keymap.set("n", "<Leader>o", "o<Esc>^Da", vim.opts)
 vim.keymap.set("n", "<Leader>O", "O<Esc>^Da", vim.opts)

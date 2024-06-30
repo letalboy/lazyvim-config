@@ -38,6 +38,12 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 
 ### Keyboard Shortcuts Overview:
 
+### Navidation:
+
+- `gd` to go to the definition of a symbol.
+- `gr` to find references to a symbol.
+- `gi` to find implementations of a symbol.
+
 #### Basic Editing:
 
 - **Open Documentation String**: `shift + k` in normal mode over a function to view the doc string.

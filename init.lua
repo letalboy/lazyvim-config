@@ -2,6 +2,9 @@
 require("config.lazy")
 require("lspconfig").rust_analyzer.setup({})
 
+-- Enable mouse support
+vim.o.mouse = "a"
+
 -- Setup nvim-cmp.
 local cmp = require("cmp")
 local luasnip = require("luasnip")
