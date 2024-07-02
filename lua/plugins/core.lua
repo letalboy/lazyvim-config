@@ -103,4 +103,33 @@ return {
   { "hrsh7th/cmp-nvim-lsp" },
   { "saadparwaiz1/cmp_luasnip" },
   { "L3MON4D3/LuaSnip" },
+  { "williamboman/mason.nvim", config = true },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "astro-language-server", "svelte-language-server" },
+      })
+    end,
+  },
+  { "neovim/nvim-lspconfig" },
+  {
+    "nanozuki/tabby.nvim",
+    -- event = 'VimEnter', -- if you want lazy load, see below
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      -- configs...
+    end,
+  },
+  {
+    "freddiehaddad/feline.nvim",
+    --   opts = {},
+    --   config = function(_, opts)
+    --     require("feline").setup()
+    --     require("feline").winbar.setup() -- to use winbar
+    --     require("feline").statuscolumn.setup() -- to use statuscolumn
+    --
+    --     require("feline").use_theme() -- to use a custom theme
+    --   end,
+  },
 }
