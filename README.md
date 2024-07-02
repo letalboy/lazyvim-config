@@ -75,9 +75,9 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 #### Advanced Commands:
 
 - **Telescope Commands**:
-  - Find Files: `<leader>ff`
-  - Live Grep: `<leader>fg`
-  - Buffers: `<leader>fb`
+  - Find Files: `<leader>ff` (Search for files with a given name)
+  - Live Grep: `<leader>fg` (Search for files containing what you are looking for)
+  - Buffers: `<leader>fb` (Search for what you are looking for in buffers, this includes the terminal)
   - Help Tags: `<leader>fh`
 - **Markdown Visualizer**:
   - Open: `ctrl + mp` or `<leader>mp`
