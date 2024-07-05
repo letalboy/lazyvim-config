@@ -37,6 +37,54 @@ require("null-ls").setup({
   },
 })
 
+local rust_tools_opts = {
+  tools = {
+    inlay_hints = {
+      auto = true,
+      only_current_line = false,
+      show_parameter_hints = true,
+      parameter_hints_prefix = "<- ",
+      other_hints_prefix = "=> ",
+      max_len_align = false,
+      right_align = false,
+      highlight = "Comment",
+    },
+  },
+  server = {
+    settings = {
+      ["rust-analyzer"] = {
+        procMacro = { enable = true },
+        cargo = {
+          loadOutDirsFromCheck = true,
+          runBuildScripts = true,
+          allFeatures = true,
+        },
+        checkOnSave = { command = "clippy" },
+        completion = {
+          autoimport = { enable = true },
+        },
+        diagnostics = {
+          disabled = { "unresolved-proc-macro" },
+        },
+        assist = {
+          importGranularity = "module",
+          importPrefix = "by_self",
+        },
+        inlayHints = {
+          typeHints = true,
+          parameterHints = true,
+          chainingHints = true,
+        },
+        trace = {
+          server = "verbose",
+        },
+      },
+    },
+  },
+}
+
+require("rust-tools").setup(rust_tools_opts)
+
 -- require("solarized-osaka").setup({
 --   -- your configuration comes here
 --   -- or leave it empty to use the default settings

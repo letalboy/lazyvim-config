@@ -4,6 +4,16 @@
 
 local telescope_builtin = require("telescope.builtin")
 
+-- Optionally, redefine it to a noop command
+vim.api.nvim_set_keymap("n", "ic", "<Nop>", { noremap = true, silent = true })
+-- ic is a command to revert all changes done, this can revert the entire file to earlyer stage, for this reason i desable it
+
+vim.api.nvim_set_keymap("n", ":u0", "<Nop>", { noremap = true, silent = true })
+-- u0 revert all changes to the first change so was disable too
+
+vim.api.nvim_set_keymap("n", ":e!", "<Nop>", { noremap = true, silent = true })
+-- e! revert all changes to the first edit, so it was disable too
+
 -- Key bindings for navigation (can be customized)
 vim.api.nvim_set_keymap(
   "n",

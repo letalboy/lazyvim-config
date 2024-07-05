@@ -72,6 +72,9 @@ end
 
 -- Plugin specifications
 return {
+  {
+    "simrat39/rust-tools.nvim",
+  },
   { "evanleck/vim-svelte", lazy = true },
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = setup_treesitter },
   { "virchau13/tree-sitter-astro", run = is_windows() and "tree-sitter generate" or "tree-sitter generate" },

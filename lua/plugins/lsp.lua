@@ -35,16 +35,41 @@ return {
       }
     end,
     opts = {
-      inlay_hints = { enabled = false },
+      inlay_hints = { enabled = true },
       ---@type lspconfig.options
       servers = {
         rust_analyzer = {
           -- Rust Analyzer settings and options here
           settings = {
             ["rust-analyzer"] = {
-              -- Example configuration:
-              cargo = { loadOutDirsFromCheck = true },
+              cargo = {
+                loadOutDirsFromCheck = true,
+                allFeatures = true,
+              },
               procMacro = { enable = true },
+              checkOnSave = {
+                command = "clippy",
+              },
+              completion = {
+                autoimport = {
+                  enable = true,
+                },
+              },
+              diagnostics = {
+                disabled = { "unresolved-proc-macro" },
+              },
+              assist = {
+                importGranularity = "module",
+                importPrefix = "by_self",
+              },
+              inlayHints = {
+                typeHints = true,
+                parameterHints = true,
+                chainingHints = true,
+              },
+              trace = {
+                server = "verbose",
+              },
             },
           },
         },
@@ -239,22 +264,6 @@ return {
           },
         },
       },
-      pyright = { -- Add Pyright configuration
-        root_dir = function(...)
-          return require("lspconfig.util").root_pattern(".git")(...)
-        end,
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              diagnosticMode = "workspace",
-              typeCheckingMode = "basic",
-            },
-          },
-        },
-      },
-
       setup = {},
     },
   },
