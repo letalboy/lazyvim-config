@@ -6,6 +6,10 @@
 vim.keymap.set("n", "<Leader>o", "o<Esc>^Da", vim.opts)
 vim.keymap.set("n", "<Leader>O", "O<Esc>^Da", vim.opts)
 
+--  Comment
+vim.keymap.set("n", "<C-_>", "gcc", { noremap = false }) -- Toggle comment on current line
+vim.keymap.set("v", "<C-_>", "gc", { noremap = false }) -- Toggle comment on selection
+
 -- New tab
 vim.keymap.set("n", "te", ":tabedit")
 vim.keymap.set("n", "<tab>", ":tabnext<Return>", vim.opts)

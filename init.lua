@@ -2,28 +2,6 @@
 require("config.lazy")
 
 -- Setup nvim-cmp.
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
-    ["<Tab>"] = cmp.mapping.select_next_item(),
-    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-  }),
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-  }, {
-    { name = "buffer" },
-  }),
-})
-
 local lspconfig = require("lspconfig")
 
 -- Setup LSP servers.
@@ -65,22 +43,6 @@ require("lspconfig").astro.setup({
   end,
   filetypes = { "astro" },
   -- Other configurations...
-})
-
--- Setup for TypeScript and JavaScript files
-require("lspconfig").tsserver.setup({
-  on_attach = function(client, bufnr)
-    -- Your on_attach function body
-  end,
-  filetypes = {
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-  },
-  -- Other tsserver configurations
 })
 
 -- Must have null-ls and Prettier installed and configured globally

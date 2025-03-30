@@ -1,5 +1,8 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
+vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "100"
+
 if not vim.loop.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
