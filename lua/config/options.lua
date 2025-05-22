@@ -13,3 +13,4 @@ vim.cmd([[
 
 -- Prevent the symbol from being draw
 vim.opt.fillchars:append({ vert = " " })
+vim.g.lazyvim_python_lsp = "pyright"

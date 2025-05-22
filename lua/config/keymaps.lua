@@ -56,7 +56,7 @@ vim.api.nvim_set_keymap("n", "<C-S-Z>", "<C-R>", { noremap = true, silent = true
 -- Create a line att top:
 vim.api.nvim_set_keymap("n", "<C-S-M>", ":execute 'normal! gg' | startinsert<CR>", { noremap = true, silent = true })
 
--- Create a line att bottom
+-- Create a line att botto
 vim.api.nvim_set_keymap("n", "<C-S-N>", ":execute 'normal! G' | startinsert<CR>", { noremap = true, silent = true })
 
 -- Tab to left using shit + tab
@@ -73,3 +73,13 @@ vim.api.nvim_set_keymap("n", "<leader>fh", ":Telescope help_tags<CR>", { noremap
 vim.api.nvim_set_keymap("n", "<leader>mp", "<Plug>MarkdownPreview", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ms", "<Plug>MarkdownPreviewStop", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>mt", "<Plug>MarkdownPreviewToggle", { noremap = true, silent = true })
+
+-- Map mouse "Back" (X1) to jump-list back (<C-o>)
+vim.keymap.set("n", "<X1Mouse>", "<C-o>", { desc = "Jump back" })
+-- Map mouse "Forward" (X2) to jump-list forward (<C-i>)
+vim.keymap.set("n", "<X2Mouse>", "<C-i>", { desc = "Jump forward" })
+
+-- indent selected lines and keep them selected
+vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
+-- un-indent selected lines and keep them selected
+vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
