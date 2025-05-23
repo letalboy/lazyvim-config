@@ -175,7 +175,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 1. Go to https://www.msys2.org/
 2. Then donwload this:
 
-![image](https://github.com/letalboy/lazyvim-config/assets/63066865/86de645e-f54a-4d11-9834-98fccd67c1e1)
+    ![image](https://github.com/letalboy/lazyvim-config/assets/63066865/86de645e-f54a-4d11-9834-98fccd67c1e1)
 
 3. Install it as default, you can follow the instructions in the https://www.msys2.org
 
