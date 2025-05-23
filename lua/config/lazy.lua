@@ -1,5 +1,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
+vim.opt.colorcolumn = "100"
+
 if not vim.loop.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
@@ -9,6 +11,26 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
+  ui = {
+    -- other ui settings you might already have…
+    custom_keys = {
+      -- Map Tab to move the selection down by 1
+      ["<Tab>"] = {
+        function()
+          require("lazy.util").change_selection(1)
+        end,
+        desc = "Select next plugin",
+      },
+      -- Map Shift-Tab to move the selection up by 1
+      ["<S-Tab>"] = {
+        function()
+          require("lazy.util").change_selection(-1)
+        end,
+        desc = "Select previous plugin",
+      },
+      -- (you can still keep any existing mappings here)
+    },
+  },
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },

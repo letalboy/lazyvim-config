@@ -1,166 +1,31 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
+-- init.lua
+
+-- 1. Bootstrap LazyVim (lazy.nvim + all lua/plugins/* specs)
 require("config.lazy")
 
--- Setup nvim-cmp.
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
-    ["<Tab>"] = cmp.mapping.select_next_item(),
-    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-  }),
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-  }, {
-    { name = "buffer" },
-  }),
-})
-
-local lspconfig = require("lspconfig")
-
--- Setup LSP servers.
-lspconfig.tsserver.setup({
-  on_attach = function(client, bufnr)
-    -- Custom logic to enhance the server's capabilities
-  end,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
-  -- Other tsserver specific settings can be added here
-})
-
--- Add additional servers here. For example, for Lua:
-lspconfig.lua_ls.setup({
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-    },
-  },
-})
-
--- Setup Pyright for Python development
-lspconfig.pyright.setup({
-  on_attach = function(client, bufnr)
-    -- Custom logic to enhance the server's capabilities can be added here
-    -- For example, enabling document formatting only if Pyright supports it
-    client.server_capabilities.document_formatting = true
-    client.server_capabilities.document_range_formatting = true
-  end,
-  filetypes = { "python" }, -- Specify that this setup is for Python files
-  -- Pyright specific settings can be added here
-  settings = {
-    python = {
-      analysis = {
-        typeCheckingMode = "basic", -- Options: "off", "basic", "strict"
-        autoSearchPaths = true,
-        diagnosticMode = "workspace",
-        useLibraryCodeForTypes = true,
-      },
-    },
-  },
-})
-
--- Disable tailwindcss language server for .astro files
-require("lspconfig").tailwindcss.setup({
-  on_attach = function(client, bufnr)
-    if vim.bo[bufnr].filetype == "astro" then
-      client.server_capabilities.document_formatting = false
-      client.server_capabilities.document_range_formatting = false
-    end
-    -- Your on_attach function body
-  end,
-  filetypes = { "html", "css", "postcss" }, -- Remove "astro" from this list
-})
-
-require("lspconfig").astro.setup({
-  on_attach = function(client, bufnr)
-    -- Custom logic for Astro files
-  end,
-  filetypes = { "astro" },
-  -- Other configurations...
-})
-
-require("lspconfig").svelte.setup({
-  on_attach = function(client, bufnr)
-    -- Custom logic for Astro files
-  end,
-  filetypes = { "svelte" },
-  -- Other configurations...
-})
-
--- -- Setup for TypeScript and JavaScript files
--- require("lspconfig").tsserver.setup({
---   on_attach = function(client, bufnr)
---     -- Your on_attach function body
---   end,
---   filetypes = {
---     "typescript",
---     "typescriptreact",
---     "typescript.tsx",
---     "javascript",
---     "javascriptreact",
---     "javascript.jsx",
---   },
---   -- Other tsserver configurations
--- })
-
--- Must have null-ls and Prettier installed and configured globally
-require("null-ls").setup({
-  sources = {
-    require("null-ls").builtins.formatting.prettier.with({
-      filetypes = { "astro", "svelte", "javascript", "typescript" },
-    }),
-  },
-})
-
--- Use 'null-ls' for linting and formatting support
-local null_ls = require("null-ls")
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.prettier.with({
-      extra_filetypes = { "astro" },
-    }),
-    null_ls.builtins.diagnostics.eslint.with({
-      extra_filetypes = { "astro" },
-    }),
-    null_ls.builtins.formatting.prettier.with({
-      extra_filetypes = { "svelte" },
-    }),
-    null_ls.builtins.diagnostics.eslint.with({
-      extra_filetypes = { "svelte" },
-    }),
-  },
-})
-
--- Treesitter configuration
+-- 2. Treesitter (you can also move this into lua/plugins/treesitter.lua)
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "astro", "svelte", "javascript", "typescript", "css", "html" },
+  ensure_installed = {
+    "astro",
+    "svelte",
+    "javascript",
+    "typescript",
+    "css",
+    "html",
+  },
+  ignore_install = {},
+  modules = {},
   sync_install = false,
   auto_install = true,
-  highlight = {
-    enable = true,
+  highlight = { enable = true },
+  rocks = {
+    enabled = true,
+    hererocks = true,
+    -- Lazy will bootstrap luarocks + Lua 5.1 automatically
   },
 })
 
--- Autocommands for automatically setting up LSP for certain file types
-vim.api.nvim_create_augroup("LSP", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  group = "LSP",
-  pattern = "astro",
-  callback = function()
-    lspconfig.tsserver.setup({
-      on_attach = on_attach,
-    })
-  end,
-})
-
--- Additional plugins or settings can be configured below.
+-- 3. Any other global Vim settings you still need:
+-- vim.o.termguicolors = true
+-- vim.o.updatetime     = 250
+-- vim.cmd([[ colorscheme catppuccin ]])
