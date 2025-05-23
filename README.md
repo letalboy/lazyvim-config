@@ -23,7 +23,7 @@ Here is how it looks:
 
 The wallpaper in the background is not included, it is a wallpaper engine wallpaper just to demonstrate the transparency
 
-### Auto Complete and Formatters:
+## Auto Complete and Formatters:
 
 - prettier
 - tree-sitter ("nvim-treesitter/nvim-treesitter")
@@ -31,14 +31,14 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - vim-svelte ("evanleck/vim-svelte")
 - nvimformatter ("mhartington/formatter.nvim")
 
-### It supports GIT!:
+## It supports GIT!:
 
 - GitSigns
 - Other Git integrations, like last mod water marks, etc..
 
-### Keyboard Shortcuts Overview:
+## Keyboard Shortcuts Overview:
 
-#### **Basic Editing**:
+### **Basic Editing**:
 
 - **Open Documentation String**: `shift + k` in normal mode over a function to view the doc string.
 - **Undo**: `ctrl + z`
@@ -47,7 +47,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - **Copy**: `ctrl + c`
 - **Paste**: `ctrl + v`
 
-#### **Line and Text Manipulation**:
+### **Line and Text Manipulation**:
 
 - **Indent Line**: `Tab`
 - **Unindent Line**: `ctrl + d`
@@ -57,7 +57,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - **Move Lines Down**: `alt + arrow down` or `<A-Down>`
 - **Disable Continuations**: Using `<Leader>o` and `<Leader>O` in normal mode.
 
-#### **Tabs and Windows**:
+### **Tabs and Windows**:
 
 - **New Tab**: `te` for new tab, `<tab>` for next tab, `<s-tab>` for previous tab.
 - **Split Window**: `ss` for horizontal split, `sv` for vertical split.
@@ -66,26 +66,26 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
   - Left: `shift + h`
   - Right: `shift + l`
 
-#### **Advanced Commands**:
+### **Advanced Commands**:
 
-- **Telescope Commands**:
+##### **Telescope Commands**:
   - Find Files: `<leader>ff`
   - Live Grep: `<leader>fg`
   - Buffers: `<leader>fb`
   - Help Tags: `<leader>fh`
-- **Markdown Visualizer**:
+##### **Markdown Visualizer**:
   - Open: `ctrl + mp` or `<leader>mp`
   - Close: `ctrl + ms` or `<leader>ms`
   - Toggle: `ctrl + mt` or `<leader>mt`
 
-#### **Screen Navigation**:
+### **Screen Navigation**:
 
 - Left: `shift + h`
 - Right: `shift + l`
 - Up: `shift + j`
 - Down: `shift + k`
 
-### **IMPORTANT!**:
+## ➡️ **IMPORTANT!** :
 
 > To use it ensure that you have [nvim](https://neovim.io/) installed in your machine and [LazyVim](https://github.com/LazyVim/LazyVim) installed too,
 follow the instructions in each part correctly to ensure that the setup will work as intended.
@@ -96,9 +96,9 @@ To set up language servers, compilers, and other tools, follow these commands in
 
 ### 1. (Optional) **Windows Subsystem for Linux (WSL)**
 
-   ```
-   wsl --install
-   ```
+  ```
+  wsl --install
+  ```
 
 ### 2. **Chocolatey Packages**:
 
@@ -106,27 +106,33 @@ To set up language servers, compilers, and other tools, follow these commands in
   > Press Win → type PowerShell\
   > Right-click it → choose Run as Administrator
 
-  1. Install Chocolatey, the Windows package manager, using a PowerShell script (bypasses execution policy temporarily for the session)
-      ```shell
-        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-      ```
-  2. Install the MinGW compiler (Minimalist GNU for Windows) via Chocolatey for C/C++ development
-      ```shell
-        choco install mingw
-      ```
-  3. Install LLVM (a modern compiler infrastructure) via Chocolatey, useful for compiling projects with Clang or other LLVM-based tools
-      ```shell
-      choco install llvm
-      ```
+1. Install Chocolatey, the Windows package manager, using a PowerShell script (bypasses execution policy temporarily for the session)
+    ```shell
+      Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    ```
+2. Install the MinGW compiler (Minimalist GNU for Windows) via Chocolatey for C/C++ development
+    ```shell
+      choco install mingw
+    ```
+3. Install LLVM (a modern compiler infrastructure) via Chocolatey, useful for compiling projects with Clang or other LLVM-based tools
+    ```shell
+    choco install llvm
+    ```
 
-  4. Install `lazygit` (a simple terminal UI for Git commands) and `fzf` (a fuzzy finder for the terminal) using Chocolatey, with `-y` to auto-confirm
-      ```shell
-      choco install lazygit fzf -y
-      ```
+4. Install `lazygit` (a simple terminal UI for Git commands) and `fzf` (a fuzzy finder for the terminal) using Chocolatey, with `-y` to auto-confirm
+    ```shell
+    choco install lazygit fzf -y
+    ```
 
-  5. Clean up any temporary files or cache created by Chocolatey to free up space and ensure a clean environment
+5. Clean up any temporary files or cache created by Chocolatey to free up space and ensure a clean environment
+    ```shell
+    choco clean --yes
+    ```
+
+6. Installs **PowerShell Core** (also known as `pwsh`), the cross-platform, modern version of Windows PowerShell.
+    > Useful for scripts, developer tooling, and improved compatibility with modern CLIs and editors.
       ```shell
-      choco clean --yes
+      choco install powershell-core -y
       ```
 
 ### 3. **Add cpp to your env vars**:
@@ -137,31 +143,32 @@ To set up language servers, compilers, and other tools, follow these commands in
 4. Then click in advanced system configs
 5. Ambient vars
 6. Click in path
-7. Then in edit
-8. And add the following path:
+7. In edit add the following path or the path that you installed it (for custom installations) :
 
     ```
     C:\msys64\mingw64\bin
     ```
 
-9. Or the path that you installed it, then save and open new terminal and do the following:
+8. Save and open new terminal and do the following:
     ```shell
     gcc --version
     g++ --version
     ```
-10. It should print the versions
-11. If you have installed MSYS2 and want to use its package manager pacman to install additional tools or libraries,
+    > It should print the versions
+10. If you have installed MSYS2 and want to use its package manager pacman to install additional tools or libraries,
   open the MSYS2 terminal and use the pacman command. For example, to install the GCC compiler, you would use:
+
+    > For a 32-bit system, replace x86_64 with i686. (just replace)
 
     ```
     pacman -S mingw-w64-ucrt-x86_64-gcc
     ```
 
-  12. For a 32-bit system, replace x86_64 with i686. Remember to update your package database and upgrade the packages with:
-      ```
-      pacman -Syu
-      pacman -Su
-      ```
+11. Remember to update your package database and upgrade the packages with:
+    ```
+    pacman -Syu
+    pacman -Su
+    ```
 
 ### 4. **Install MSys2 to manange packets**:
 
@@ -170,7 +177,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 
 ![image](https://github.com/letalboy/lazyvim-config/assets/63066865/86de645e-f54a-4d11-9834-98fccd67c1e1)
 
-3. Install it as default, you can follow the instructions in the msys2.org
+3. Install it as default, you can follow the instructions in the https://www.msys2.org
 
 ### 5. **Msys2 and MinGW**:
 
@@ -255,8 +262,24 @@ To set up language servers, compilers, and other tools, follow these commands in
       ```shell
         npm update -g tree-sitter-cli
       ```
+### 9. (Optional) Required for Python Plugin Support Install Neovim Python Client
 
-### 9. **Now initialize lazyvim**
+  > The `--user` flag installs the package for your user only, avoiding the need for admin rights or virtual environments.
+
+
+  1. If you have Python installed, it's recommended to upgrade `pip` to ensure compatibility with modern packages and features.
+  
+      ```shell
+      python -m pip install --upgrade pip
+      ```
+
+  2. This installs the `pynvim` library, which is required for Neovim plugins that use Python (e.g., linting, autocompletion, LSPs).
+      ```shell
+      python -m pip install --user pynvim
+      ```
+
+  
+### 10. **Now initialize lazyvim**
   1. Ensure that you are in a administrator shell with privileges and then simple do:
       ```shell
       nvim
@@ -264,7 +287,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 
   2. After this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
-### 10. **Tree-Sitter and Language Servers**:
+### 11. **Tree-Sitter and Language Servers**:
   1. In nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
 
       ```
@@ -276,6 +299,9 @@ To set up language servers, compilers, and other tools, follow these commands in
       ```
 
   2. After completing these steps, ensure to close the privileged shell and open it again before proceeding with further updates or installations.
+
+
+
 
 ### Troubleshooting:
 
