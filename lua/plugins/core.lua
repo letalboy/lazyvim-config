@@ -104,7 +104,8 @@ end
 
 -- Plugin specifications
 return {
-  { "evanleck/vim-svelte", lazy = true },
+  { "evanleck/vim-svelte", lazy = true, ft = "svelte" },
+  { "wuelnerdotexe/vim-astro", ft = "astro" },
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = setup_treesitter },
   { "virchau13/tree-sitter-astro", run = is_windows() and "tree-sitter generate" or "tree-sitter generate" },
   { "akinsho/toggleterm.nvim", config = setup_toggleterm },
@@ -118,7 +119,7 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
-  { "numToStr/Comment.nvim" },
+  { "numToStr/Comment.nvim", opts = {}, lazy = false },
   { "mhartington/formatter.nvim", config = setup_formatter },
   {
     "hrsh7th/nvim-cmp",

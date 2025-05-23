@@ -2,8 +2,32 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      -- 1) Merge in your tsserver settings
+      -- create (or reuse) a group for LSP formatting autocmds
+      local fmt_grp = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
+
+      -- Define a common on_attach function
+      local on_attach = function(client, bufnr)
+        -- if server supports formatting, auto-format on save
+        if client.server_capabilities.documentFormattingProvider then
+          vim.api.nvim_clear_autocmds({ group = fmt_grp, buffer = bufnr })
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = fmt_grp,
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = bufnr, async = false })
+            end,
+          })
+        end
+
+        -- manual <leader>f formatter
+        vim.keymap.set("n", "<leader>f", function()
+          vim.lsp.buf.format({ bufnr = bufnr })
+        end, { buffer = bufnr, desc = "Format buffer" })
+      end
+
+      -- Merge all LSP servers
       opts.servers = vim.tbl_deep_extend("force", opts.servers or {}, {
+        -- TypeScript Server
         tsserver = {
           filetypes = {
             "typescript",
@@ -13,19 +37,78 @@ return {
             "javascriptreact",
             "javascript.jsx",
           },
+          on_attach = on_attach,
+        },
+
+        -- Lua Server
+        lua_ls = {
+          on_attach = on_attach,
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+            },
+          },
+        },
+
+        -- Tailwind CSS Server
+        tailwindcss = {
           on_attach = function(client, bufnr)
-            -- your existing on_attach logic here
+            if vim.bo[bufnr].filetype == "astro" then
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end
+            on_attach(client, bufnr)
           end,
+          filetypes = { "html", "css", "postcss" },
+        },
+
+        -- Astro Server
+        astro = {
+          on_attach = on_attach,
+          filetypes = { "astro" },
+        },
+        -- Svelte Server
+        svelte = {
+          on_attach = on_attach,
+          cmd = { "svelteserver", "--stdio" },
+          filetypes = { "svelte" },
         },
       })
 
-      -- 2) Grab LazyVim’s default LSP keymaps and add <CR> → goto-definition
+      -- Keep LazyVim default keybindings with goto-definition on <CR>
       local Keys = require("lazyvim.plugins.lsp.keymaps").get()
       table.insert(Keys, {
         "<CR>",
         vim.lsp.buf.definition,
         desc = "Go to Definition",
       })
+
+      -- Return the updated keybindings
+      opts.setup = {
+        -- Add an autocommand for astro files if needed
+        astro = function()
+          -- Special setup for astro files can go here
+        end,
+      }
+      return opts
+    end,
+  },
+
+  -- Add null-ls for Prettier formatting
+  {
+    "nvimtools/none-ls.nvim", -- Fork of null-ls
+    dependencies = { "mason.nvim" },
+    opts = function()
+      local nls = require("null-ls")
+      return {
+        sources = {
+          nls.builtins.formatting.prettier.with({
+            filetypes = { "astro", "javascript", "typescript" },
+          }),
+        },
+      }
     end,
   },
 }

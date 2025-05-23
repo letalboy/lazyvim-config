@@ -1,79 +1,26 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
+-- init.lua
+
+-- 1. Bootstrap LazyVim (lazy.nvim + all lua/plugins/* specs)
 require("config.lazy")
 
--- Setup nvim-cmp.
-local lspconfig = require("lspconfig")
-
--- Setup LSP servers.
-lspconfig.tsserver.setup({
-  on_attach = function(client, bufnr)
-    -- Custom logic to enhance the server's capabilities
-  end,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
-  -- Other tsserver specific settings can be added here
-})
-
--- Add additional servers here. For example, for Lua:
-lspconfig.lua_ls.setup({
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-    },
-  },
-})
-
--- Disable tailwindcss language server for .astro files
-require("lspconfig").tailwindcss.setup({
-  on_attach = function(client, bufnr)
-    if vim.bo[bufnr].filetype == "astro" then
-      client.server_capabilities.document_formatting = false
-      client.server_capabilities.document_range_formatting = false
-    end
-    -- Your on_attach function body
-  end,
-  filetypes = { "html", "css", "postcss" }, -- Remove "astro" from this list
-})
-
-require("lspconfig").astro.setup({
-  on_attach = function(client, bufnr)
-    -- Custom logic for Astro files
-  end,
-  filetypes = { "astro" },
-  -- Other configurations...
-})
-
--- Must have null-ls and Prettier installed and configured globally
-require("null-ls").setup({
-  sources = {
-    require("null-ls").builtins.formatting.prettier.with({
-      filetypes = { "astro", "javascript", "typescript" },
-    }),
-  },
-})
-
--- Treesitter configuration
+-- 2. Treesitter (you can also move this into lua/plugins/treesitter.lua)
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "astro", "svelte", "javascript", "typescript", "css", "html" },
+  ensure_installed = {
+    "astro",
+    "svelte",
+    "javascript",
+    "typescript",
+    "css",
+    "html",
+  },
+  ignore_install = {},
+  modules = {},
   sync_install = false,
   auto_install = true,
-  highlight = {
-    enable = true,
-  },
+  highlight = { enable = true },
 })
 
--- Autocommands for automatically setting up LSP for certain file types
-vim.api.nvim_create_augroup("LSP", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  group = "LSP",
-  pattern = "astro",
-  callback = function()
-    lspconfig.tsserver.setup({
-      on_attach = on_attach,
-    })
-  end,
-})
-
--- Additional plugins or settings can be configured below.
+-- 3. Any other global Vim settings you still need:
+-- vim.o.termguicolors = true
+-- vim.o.updatetime     = 250
+-- vim.cmd([[ colorscheme catppuccin ]])

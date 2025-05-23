@@ -81,5 +81,6 @@ vim.keymap.set("n", "<X2Mouse>", "<C-i>", { desc = "Jump forward" })
 
 -- indent selected lines and keep them selected
 vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
+
 -- un-indent selected lines and keep them selected
 vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
