@@ -1,3 +1,0 @@
--- Svelte language server settings - these will be moved to lsp.lua
--- This file is kept for backward compatibility but is no longer needed
--- All configurations have been properly moved to lua/plugins/ directory
