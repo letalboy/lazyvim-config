@@ -117,6 +117,10 @@ end
 -- Plugin specifications
 return {
   {
+    "williamboman/mason.nvim",
+    config = true,
+  },
+  {
     "evanleck/vim-svelte",
     lazy = true,
     ft = "svelte",
