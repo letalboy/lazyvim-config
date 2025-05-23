@@ -38,7 +38,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 
 ### Keyboard Shortcuts Overview:
 
-#### Basic Editing:
+#### **Basic Editing**:
 
 - **Open Documentation String**: `shift + k` in normal mode over a function to view the doc string.
 - **Undo**: `ctrl + z`
@@ -47,7 +47,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - **Copy**: `ctrl + c`
 - **Paste**: `ctrl + v`
 
-#### Line and Text Manipulation:
+#### **Line and Text Manipulation**:
 
 - **Indent Line**: `Tab`
 - **Unindent Line**: `ctrl + d`
@@ -57,7 +57,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - **Move Lines Down**: `alt + arrow down` or `<A-Down>`
 - **Disable Continuations**: Using `<Leader>o` and `<Leader>O` in normal mode.
 
-#### Tabs and Windows:
+#### **Tabs and Windows**:
 
 - **New Tab**: `te` for new tab, `<tab>` for next tab, `<s-tab>` for previous tab.
 - **Split Window**: `ss` for horizontal split, `sv` for vertical split.
@@ -66,7 +66,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
   - Left: `shift + h`
   - Right: `shift + l`
 
-#### Advanced Commands:
+#### **Advanced Commands**:
 
 - **Telescope Commands**:
   - Find Files: `<leader>ff`
@@ -78,14 +78,14 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
   - Close: `ctrl + ms` or `<leader>ms`
   - Toggle: `ctrl + mt` or `<leader>mt`
 
-#### Screen Navigation:
+#### **Screen Navigation**:
 
 - Left: `shift + h`
 - Right: `shift + l`
 - Up: `shift + j`
 - Down: `shift + k`
 
-### IMPORTANT!:
+### **IMPORTANT!**:
 
 > To use it ensure that you have [nvim](https://neovim.io/) installed in your machine and [LazyVim](https://github.com/LazyVim/LazyVim) installed too,
 follow the instructions in each part correctly to ensure that the setup will work as intended.
@@ -94,7 +94,7 @@ follow the instructions in each part correctly to ensure that the setup will wor
 
 To set up language servers, compilers, and other tools, follow these commands in sequence:
 
-### 1. **Windows Subsystem for Linux (WSL)**: (Optional)
+### 1. (Optional) **Windows Subsystem for Linux (WSL)**
 
    ```
    wsl --install
@@ -102,19 +102,32 @@ To set up language servers, compilers, and other tools, follow these commands in
 
 ### 2. **Chocolatey Packages**:
 
-   Run in a administrator shell
+  > Close all PowerShell/CMD windows  
+  > Press Win → type PowerShell\
+  > Right-click it → choose Run as Administrator
 
-   ```shell
-    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-   ```
+  1. Install Chocolatey, the Windows package manager, using a PowerShell script (bypasses execution policy temporarily for the session)
+      ```shell
+        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+      ```
+  2. Install the MinGW compiler (Minimalist GNU for Windows) via Chocolatey for C/C++ development
+      ```shell
+        choco install mingw
+      ```
+  3. Install LLVM (a modern compiler infrastructure) via Chocolatey, useful for compiling projects with Clang or other LLVM-based tools
+      ```shell
+      choco install llvm
+      ```
 
-   ```shell
-    choco install mingw
-   ```
+  4. Install `lazygit` (a simple terminal UI for Git commands) and `fzf` (a fuzzy finder for the terminal) using Chocolatey, with `-y` to auto-confirm
+      ```shell
+      choco install lazygit fzf -y
+      ```
 
-   ```shell
-   choco install llvm
-   ```
+  5. Clean up any temporary files or cache created by Chocolatey to free up space and ensure a clean environment
+      ```shell
+      choco clean --yes
+      ```
 
 ### 3. **Add cpp to your env vars**:
 
@@ -233,40 +246,40 @@ To set up language servers, compilers, and other tools, follow these commands in
 
 ### 8. **Verify if tree sitter is installed**:
 
-   ```
-     tree-sitter --version
-   ```
+  1. Check the currently installed version of `tree-sitter` to verify it's available and correctly installed
+      ```
+        tree-sitter --version
+      ```
 
-- if you get errors in treesitter try to update it:
-  ```shell
-    npm update -g tree-sitter-cli
-  ```
+  2. (optional) If you encounter errors with Tree-sitter parsing or integration, update the CLI globally to the latest version
+      ```shell
+        npm update -g tree-sitter-cli
+      ```
 
 ### 9. **Now initialize lazyvim**
-   Ensure that you are in a administrator shell with privileges and then simple do:
+  1. Ensure that you are in a administrator shell with privileges and then simple do:
+      ```shell
+      nvim
+      ```
 
-   ```shell
-   nvim
-   ```
-
-   after this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
+  2. After this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
 ### 10. **Tree-Sitter and Language Servers**:
-    in nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
+  1. In nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
 
-```
-:TSInstall html javascript css typescript tsx astro
-:TSUpdate
-:TSInstall c cpp
-:TSInstallSync
-:checkhealth nvim-treesitter
-```
+      ```
+      :TSInstall html javascript css typescript tsx astro
+      :TSUpdate
+      :TSInstall c cpp
+      :TSInstallSync
+      :checkhealth nvim-treesitter
+      ```
 
-After completing these steps, ensure to close the privileged shell and open it again before proceeding with further updates or installations.
+  2. After completing these steps, ensure to close the privileged shell and open it again before proceeding with further updates or installations.
 
 ### Troubleshooting:
 
-For any issues encountered during the installation or usage of LazyVim, consider the following troubleshooting steps:
+> For any issues encountered during the installation or usage of LazyVim, consider the following troubleshooting steps:
 
 1. **Check Compatibility**: Ensure that your system meets all the prerequisites for LazyVim, including Neovim version, operating system compatibility, and any dependencies required by plugins or language servers.
 
