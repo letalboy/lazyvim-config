@@ -100,7 +100,7 @@ To set up language servers, compilers, and other tools, follow these commands in
   wsl --install
   ```
 
-### 2. **Chocolatey Packages**:
+### 2. **Chocolatey Packages**
 
   > Close all PowerShell/CMD windows  
   > Press Win → type PowerShell\
@@ -135,7 +135,7 @@ To set up language servers, compilers, and other tools, follow these commands in
       choco install powershell-core -y
       ```
 
-### 3. **Add cpp to your env vars**:
+### 3. **Add cpp to your env vars**
 
 1. Open a folder
 2. Right click in my computer
@@ -170,7 +170,7 @@ To set up language servers, compilers, and other tools, follow these commands in
     pacman -Su
     ```
 
-### 4. **Install MSys2 to manange packets**:
+### 4. **Install MSys2 to manange packets**
 
 1. Go to https://www.msys2.org/
 2. Then donwload this:
@@ -179,7 +179,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 
 3. Install it as default, you can follow the instructions in the https://www.msys2.org
 
-### 5. **Msys2 and MinGW**:
+### 5. **Msys2 and MinGW**
 
   1. Open Msys2 shell and follow the next steps ahead.
   2. Install the GCC (GNU Compiler Collection), which is required for compiling C/C++ code on MSYS2
@@ -196,7 +196,7 @@ To set up language servers, compilers, and other tools, follow these commands in
       pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
       ```
 
-### 6. **Git Configuration**:
+### 6. **Git Configuration**
 
   > Return to shell with admin privileged:
 
@@ -206,7 +206,7 @@ To set up language servers, compilers, and other tools, follow these commands in
       git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
       ```
 
-### 7. **NPM Packages**:
+### 7. **NPM Packages**
 
   > While in the shell with admin privileges run the following to install the language servers
 
@@ -251,7 +251,7 @@ To set up language servers, compilers, and other tools, follow these commands in
       npm rebuild
       ```
 
-### 8. **Verify if tree sitter is installed**:
+### 8. **Verify if tree sitter is installed**
 
   1. Check the currently installed version of `tree-sitter` to verify it's available and correctly installed
       ```
@@ -287,7 +287,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 
   2. After this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
-### 11. **Tree-Sitter and Language Servers**:
+### 11. **Tree-Sitter and Language Servers**
   1. In nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
 
       ```
@@ -300,10 +300,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 
   2. After completing these steps, ensure to close the privileged shell and open it again before proceeding with further updates or installations.
 
-
-
-
-### Troubleshooting:
+## Troubleshooting
 
 > For any issues encountered during the installation or usage of LazyVim, consider the following troubleshooting steps:
 
