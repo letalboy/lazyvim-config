@@ -6,6 +6,7 @@ require("config.lazy")
 -- 2. Treesitter (you can also move this into lua/plugins/treesitter.lua)
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
+    "vslsl",
     "astro",
     "svelte",
     "javascript",

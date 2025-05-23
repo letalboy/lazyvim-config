@@ -28,7 +28,8 @@ return {
       -- Merge all LSP servers
       opts.servers = vim.tbl_deep_extend("force", opts.servers or {}, {
         -- TypeScript Server
-        tsserver = {
+        vtsls = {
+          on_attach = on_attach,
           filetypes = {
             "typescript",
             "typescriptreact",
@@ -37,7 +38,40 @@ return {
             "javascriptreact",
             "javascript.jsx",
           },
-          on_attach = on_attach,
+          root_dir = require("lspconfig.util").root_pattern("tsconfig.json", "package.json", ".git"),
+          settings = {
+            typescript = {
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              updateImportsOnFileMove = {
+                enabled = "always",
+              },
+              tsserver = {
+                watchOptions = {
+                  watchFile = "useFsEvents",
+                },
+              },
+            },
+            vtsls = {
+              autoUseWorkspaceTsdk = true,
+              enableMoveToFileCodeAction = true,
+              experimental = {
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
+                maxInlayHintLength = 30,
+              },
+            },
+          },
         },
 
         -- Lua Server

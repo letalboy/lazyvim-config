@@ -64,7 +64,19 @@ end
 
 -- Setup function for gitsigns.nvim
 local function setup_gitsigns()
-  require("gitsigns").setup()
+  require("gitsigns").setup({
+    _extmark_signs = true,
+    _inline_messaging = false,
+    _threaded_diff = true,
+    watch_gitdir = {
+      interval = 1000,
+      follow_files = true,
+    },
+    sign_priority = 6,
+    update_debounce = 200,
+    status_formatter = nil,
+    max_file_length = 40000,
+  })
   vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
 end
 
@@ -104,22 +116,97 @@ end
 
 -- Plugin specifications
 return {
-  { "evanleck/vim-svelte", lazy = true, ft = "svelte" },
-  { "wuelnerdotexe/vim-astro", ft = "astro" },
-  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = setup_treesitter },
-  { "virchau13/tree-sitter-astro", run = is_windows() and "tree-sitter generate" or "tree-sitter generate" },
-  { "akinsho/toggleterm.nvim", config = setup_toggleterm },
-  { "ahmedkhalf/project.nvim", config = setup_project },
-  { "lewis6991/gitsigns.nvim", config = setup_gitsigns },
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
+    "evanleck/vim-svelte",
+    lazy = true,
+    ft = "svelte",
+  },
+  { "wuelnerdotexe/vim-astro",     ft = "astro" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = setup_treesitter,
+  },
+  { "virchau13/tree-sitter-astro", run = is_windows() and "tree-sitter generate" or "tree-sitter generate" },
+  { "akinsho/toggleterm.nvim",     config = setup_toggleterm },
+  { "ahmedkhalf/project.nvim",     config = setup_project },
+  {
+    "lewis6991/gitsigns.nvim",
+    -- ensure we pull the patched async-safe code on main
+    branch = "main",
+    version = false,
+    event = { "BufReadPre", "BufNewFile" },
+
+    opts = function()
+      local is_win = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
+
+      return {
+        signs = {
+          add = { text = "│" },
+          change = { text = "│" },
+          delete = { text = "_" },
+          topdelete = { text = "‾" },
+          changedelete = { text = "~" },
+          untracked = { text = "┆" },
+        },
+
+        -- visual toggles
+        signcolumn = true,
+        numhl = false,
+        linehl = false,
+        word_diff = false,
+
+        -- file‐watching
+        watch_gitdir = {
+          interval = is_win and 2000 or 1000,
+          follow_files = true,
+        },
+
+        -- attach & blame
+        auto_attach = true,
+        attach_to_untracked = false,
+        current_line_blame = false,
+
+        -- performance & thresholds
+        sign_priority = 6,
+        update_debounce = is_win and 500 or 100,
+        status_formatter = nil,
+        max_file_length = 40000,
+
+        -- preview window
+        preview_config = {
+          border = "rounded",
+          style = "minimal",
+          relative = "cursor",
+          row = 0,
+          col = 1,
+        },
+
+        -- use built-in diff on Windows, external on others
+        diff_opts = {
+          internal = is_win,
+        },
+      }
     end,
   },
-  { "numToStr/Comment.nvim", opts = {}, lazy = false },
+  {
+    "iamcco/markdown-preview.nvim",
+    -- build step: install the small Node server
+    build = "cd app && npm install",
+
+    -- only load when you open a Markdown file
+    ft = "markdown",
+    -- or when you explicitly call one of these commands
+    cmd = { "MarkdownPreview", "MarkdownPreviewToggle", "MarkdownPreviewStop" },
+
+    -- run *before* the plugin is loaded
+    init = function()
+      vim.g.mkdp_auto_start = 1
+      -- optionally choose your browser:
+      -- vim.g.mkdp_browser = 'chrome'
+    end,
+  },
+  { "numToStr/Comment.nvim",      opts = {},               lazy = false },
   { "mhartington/formatter.nvim", config = setup_formatter },
   {
     "hrsh7th/nvim-cmp",
