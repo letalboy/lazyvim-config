@@ -148,7 +148,7 @@ return {
   },
 
   -- {
-  --   "stevearc/dressing.nvim", -- This will give vim.ui.select a proper UI, which should fix the warnin
+  --   "stevearc/dressing.nvim", -- This will give vim.ui.select a proper UI, which should fix the warning
   --   event = "VeryLazy",
   --   opts = {},
   -- },

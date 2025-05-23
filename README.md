@@ -87,20 +87,20 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 
 ### IMPORTANT!:
 
-To use it ensure that you have [nvim](https://neovim.io/) installed in your machine and [LazyVim](https://github.com/LazyVim/LazyVim) installed too,
+> To use it ensure that you have [nvim](https://neovim.io/) installed in your machine and [LazyVim](https://github.com/LazyVim/LazyVim) installed too,
 follow the instructions in each part correctly to ensure that the setup will work as intended.
 
-### Installation and Setup Commands
+## Installation and Setup Commands
 
 To set up language servers, compilers, and other tools, follow these commands in sequence:
 
-1. **Windows Subsystem for Linux (WSL)**: (Optional)
+### 1. **Windows Subsystem for Linux (WSL)**: (Optional)
 
    ```
    wsl --install
    ```
 
-2. **Chocolatey Packages**:
+### 2. **Chocolatey Packages**:
 
    Run in a administrator shell
 
@@ -116,99 +116,122 @@ To set up language servers, compilers, and other tools, follow these commands in
    choco install llvm
    ```
 
-3. **Add cpp to your env vars**:
+### 3. **Add cpp to your env vars**:
 
-- Open a folder
-- Right click in my computer
-- Properts
-- Then click in advanced system configs
-- Ambient vars
-- Click in path
-- Then in edit
-- And add the following path:
+1. Open a folder
+2. Right click in my computer
+3. Properts
+4. Then click in advanced system configs
+5. Ambient vars
+6. Click in path
+7. Then in edit
+8. And add the following path:
 
-  ```
-  C:\msys64\mingw64\bin
-  ```
+    ```
+    C:\msys64\mingw64\bin
+    ```
 
-- Or the path that you installed it, then save and open new terminal and do the following:
-  ```shell
-   gcc --version
-   g++ --version
-  ```
-- It should print the versions
-- If you have installed MSYS2 and want to use its package manager pacman to install additional tools or libraries,
+9. Or the path that you installed it, then save and open new terminal and do the following:
+    ```shell
+    gcc --version
+    g++ --version
+    ```
+10. It should print the versions
+11. If you have installed MSYS2 and want to use its package manager pacman to install additional tools or libraries,
   open the MSYS2 terminal and use the pacman command. For example, to install the GCC compiler, you would use:
 
-  ```
-  pacman -S mingw-w64-ucrt-x86_64-gcc
-  ```
+    ```
+    pacman -S mingw-w64-ucrt-x86_64-gcc
+    ```
 
-- For a 32-bit system, replace x86_64 with i686. Remember to update your package database and upgrade the packages with:
-  ```
-  pacman -Syu
-  pacman -Su
-  ```
+  12. For a 32-bit system, replace x86_64 with i686. Remember to update your package database and upgrade the packages with:
+      ```
+      pacman -Syu
+      pacman -Su
+      ```
 
-4. **Install MSys2 to manange packets**:
+### 4. **Install MSys2 to manange packets**:
 
-- Go to https://www.msys2.org/
-- Then donwload this:
+1. Go to https://www.msys2.org/
+2. Then donwload this:
 
 ![image](https://github.com/letalboy/lazyvim-config/assets/63066865/86de645e-f54a-4d11-9834-98fccd67c1e1)
 
-- Install it as default, you can follow the instructions in the msys2.org
+3. Install it as default, you can follow the instructions in the msys2.org
 
-5. **Msys2 and MinGW**:
+### 5. **Msys2 and MinGW**:
 
-   Open Msys2 shell and run
+  1. Open Msys2 shell and follow the next steps ahead.
+  2. Install the GCC (GNU Compiler Collection), which is required for compiling C/C++ code on MSYS2
 
-   ```
-   pacman -S gcc
-   ```
+      ```
+      pacman -S gcc
+      ```
+  3. Install a complete set of development tools and toolchains (both 32-bit and 64-bit) including:
+      - `base-devel`: common build utilities (make, etc.)
+      - `mingw-w64-*`: MinGW-w64 compilers for cross-platform builds (GCC and Clang for x86_64/i686)
+      - `git`, `subversion`, `mercurial`: version control tools
+      - `cmake`: build system generator for both 32-bit and 64-bit
+      ```
+      pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
+      ```
 
-   ```
-   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
-   ```
+### 6. **Git Configuration**:
 
-6. **Git Configuration**:
+  > Return to shell with admin privileged:
 
-   return to shell with admin privileged and run:
+  1. Mark the `LuaSnip` plugin directory as a safe Git directory to prevent Git warnings/errors when it's used by Neovim or other tools
 
-   ```shell
-   git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
-   ```
+      ```shell
+      git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
+      ```
 
-7. **NPM Packages**:
+### 7. **NPM Packages**:
 
-   While in the shell with admin privileges run the following to install the language servers
+  > While in the shell with admin privileges run the following to install the language servers
 
-   ```shell
-   npm install -g windows-build-tools
-   ```
+  1. Install Windows-specific build tools necessary for compiling native Node.js modules
+      
+      ```shell
+      npm install -g windows-build-tools
+      ```
 
-   ```shell
-   npm i -g vscode-langservers-extracted
-   ```
+  2. Install commonly used language servers for HTML, CSS, and JSON (used by VS Code and other editors)
+      
+      ```shell
+      npm i -g vscode-langservers-extracted
+      ```
 
-   ```shell
-   npm rebuild
-   ```
+  3. Rebuild native modules for current Node.js version (used after installing or updating modules)
+    
+      ```shell
+      npm rebuild
+      ```
 
-   ```shell
-   npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
-   ```
+  4. Install project-specific development dependencies for TypeScript and Prettier with Astro support
+   
+      ```shell
+      npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
+      ```
 
-   ```shell
-   npm install -g typescript typescript-language-server node-gyp @astrojs/language-server prettier prettier-plugin-astro eslint-lsp tree-sitter-cli @tailwindcss/language-server pyright vscode-json-languageserver
+  5. Globally install essential language servers and tools for multiple languages (JS, Astro, Tailwind, Python, JSON)
 
-   ```
+      ```shell
+      npm install -g typescript typescript-language-server node-gyp @astrojs/language-server prettier prettier-plugin-astro eslint-lsp tree-sitter-cli @tailwindcss/language-server pyright vscode-json-languageserver
+      ```
+  6. Install Neovim node bindings globally for better integration with the Neovim editor
 
-   ```shell
-   npm rebuild
-   ```
+      ```shell
+      npm install -g neovim
+      ```
 
-8. **Verify if tree sitter is installed**:
+  7. Rebuild again to ensure all global packages and native modules are aligned with the environment
+
+      ```shell
+      npm rebuild
+      ```
+
+### 8. **Verify if tree sitter is installed**:
 
    ```
      tree-sitter --version
@@ -219,7 +242,7 @@ To set up language servers, compilers, and other tools, follow these commands in
     npm update -g tree-sitter-cli
   ```
 
-9. **Now initialize lazyvim**
+### 9. **Now initialize lazyvim**
    Ensure that you are in a administrator shell with privileges and then simple do:
 
    ```shell
@@ -228,7 +251,7 @@ To set up language servers, compilers, and other tools, follow these commands in
 
    after this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
-10. **Tree-Sitter and Language Servers**:
+### 10. **Tree-Sitter and Language Servers**:
     in nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
 
 ```
