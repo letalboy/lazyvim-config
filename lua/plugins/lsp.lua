@@ -103,6 +103,7 @@ return {
           on_attach = on_attach,
           filetypes = { "astro" },
         },
+
         -- Svelte Server
         svelte = {
           on_attach = on_attach,
@@ -145,4 +146,10 @@ return {
       }
     end,
   },
+
+  -- {
+  --   "stevearc/dressing.nvim", -- This will give vim.ui.select a proper UI, which should fix the warnin
+  --   event = "VeryLazy",
+  --   opts = {},
+  -- },
 }

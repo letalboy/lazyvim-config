@@ -18,6 +18,11 @@ require("nvim-treesitter.configs").setup({
   sync_install = false,
   auto_install = true,
   highlight = { enable = true },
+  rocks = {
+    enabled = true,
+    hererocks = true,
+    -- Lazy will bootstrap luarocks + Lua 5.1 automatically
+  },
 })
 
 -- 3. Any other global Vim settings you still need:
