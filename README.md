@@ -192,7 +192,8 @@ To set up language servers, compilers, and other tools, follow these commands in
       - `mingw-w64-*`: MinGW-w64 compilers for cross-platform builds (GCC and Clang for x86_64/i686)
       - `git`, `subversion`, `mercurial`: version control tools
       - `cmake`: build system generator for both 32-bit and 64-bit
-      
+    
+      **Run the following command:**
       ```
       pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
       ```
