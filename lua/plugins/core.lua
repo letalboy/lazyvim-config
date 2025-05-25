@@ -133,6 +133,14 @@ return {
   },
   { "virchau13/tree-sitter-astro", run = is_windows() and "tree-sitter generate" or "tree-sitter generate" },
   { "akinsho/toggleterm.nvim",     config = setup_toggleterm },
+  -- {
+  --   "folke/which-key.nvim",
+  --   config = function()
+  --     require("which-key").setup({
+  --       -- your which-key options here (you can leave it empty for defaults)
+  --     })
+  --   end,
+  -- },
   { "ahmedkhalf/project.nvim",     config = setup_project },
   {
     "lewis6991/gitsigns.nvim",

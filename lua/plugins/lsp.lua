@@ -17,6 +17,13 @@ return {
               vim.lsp.buf.format({ bufnr = bufnr, async = false })
             end,
           })
+          vim.api.nvim_buf_set_keymap(
+            bufnr,
+            "n",
+            "<leader>cl",
+            "<cmd>lua vim.lsp.codelens.run()<cr>",
+            { noremap = true, silent = true, desc = "Run CodeLens" }
+          )
         end
 
         -- manual <leader>f formatter
