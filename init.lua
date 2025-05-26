@@ -29,3 +29,29 @@ require("nvim-treesitter.configs").setup({
 -- vim.o.termguicolors = true
 -- vim.o.updatetime     = 250
 -- vim.cmd([[ colorscheme catppuccin ]])
+
+-- enable 24-bit colors
+vim.opt.termguicolors = true
+
+-- choose dark or light
+vim.opt.background = "dark" -- or "light"
+
+local signs = {
+  Error = "", -- red circle with cross
+  Warn = "", -- yellow warning triangle
+  Hint = "", -- light-bulb
+  Info = "", -- blue info circle
+}
+
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+-- 2) Make sure you’re actually showing signs
+vim.diagnostic.config({
+  virtual_text = false, -- optional: disable inline text
+  signs = true,         -- enable your new signs
+  underline = true,
+  update_in_insert = false,
+})
