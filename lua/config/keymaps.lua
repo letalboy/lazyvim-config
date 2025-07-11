@@ -3,6 +3,19 @@
 -- Add any additional keymaps here
 local opts = { noremap = true, silent = true, desc = "" }
 
+-- Focus Nvim-Tree with Alt-h
+vim.keymap.set("n", "<A-h>", "<cmd>NvimTreeFocus<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Focus Nvim-Tree",
+})
+-- Return to your last window with Alt-l
+vim.keymap.set("n", "<A-l>", "<cmd>NvimTreeClose<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Close Nvim-Tree (back to code)",
+})
+
 -- cycle buffers with Tab / Shift-Tab
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", vim.tbl_extend("force", opts, { desc = "Next buffer" }))
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", vim.tbl_extend("force", opts, { desc = "Prev buffer" }))
@@ -31,7 +44,7 @@ vim.keymap.set("n", "<leader>w", "<cmd>wincmd r<CR>", vim.tbl_extend("force", op
 vim.keymap.set("n", "<Leader>o", "o<Esc>^Da", vim.opts)
 vim.keymap.set("n", "<Leader>O", "O<Esc>^Da", vim.opts)
 
---  Comment
+-- Comment
 vim.keymap.set("n", "<leader>c", "gcc", { noremap = false }) -- Toggle comment on current line
 vim.keymap.set("v", "<leader>c", "gc", { noremap = false })  -- Toggle comment on selection
 
