@@ -2,6 +2,17 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
+
+      -- ── helpers for cross-platform paths ──────────────────────────────
+      local util      = require("lspconfig.util")
+      local is_win    = vim.loop.os_uname().sysname == "Windows_NT"
+      local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
+      -- add Mason’s bin dir to PATH, guarding against nil
+      local sep      = is_win and ";" or ":"
+      local sys_path = vim.env.PATH or vim.env.Path or ""
+      vim.env.PATH   = mason_bin .. sep .. sys_path
+      -- ─────────────────────────────────────────────────────────────────
+
       -- create (or reuse) a group for LSP formatting autocmds
       local fmt_grp = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
@@ -116,6 +127,30 @@ return {
           on_attach = on_attach,
           cmd = { "svelteserver", "--stdio" },
           filetypes = { "svelte" },
+        },
+
+        -- Rust Analyzer
+        rust_analyzer = {
+          on_attach = on_attach,
+          -- make sure Neovim can find the binary
+          cmd       = { mason_bin .. (is_win and "/rust-analyzer.exe" or "/rust-analyzer") },
+          filetypes = { "rust" },
+          root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
+          settings = {
+            ["rust-analyzer"] = {
+              -- load all features, proc-macros, and out-dirs
+              cargo = {
+                allFeatures = true,
+                loadOutDirsFromCheck = true,
+              },
+              procMacro = { enable = true },
+              -- run Clippy on save to avoid a bare `cargo check` crash
+              checkOnSave = {
+                enable = true,
+                command = "clippy",
+              },
+            },
+          },
         },
       })
 
