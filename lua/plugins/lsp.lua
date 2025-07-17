@@ -152,6 +152,22 @@ return {
             },
           },
         },
+
+        -- Docker Language Server
+        dockerls = {
+          on_attach = on_attach,
+          filetypes = { "dockerfile" },
+          root_dir = util.root_pattern("Dockerfile", ".git"),
+          settings = {},
+        },
+
+        -- Docker Compose Language Service
+        docker_compose_language_service = {
+          on_attach = on_attach,
+          filetypes = { "yaml.docker-compose", "yaml" },
+          root_dir = util.root_pattern("docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml", ".git"),
+          settings = {},
+        },
       })
 
       -- Keep LazyVim default keybindings with goto-definition on <CR>
