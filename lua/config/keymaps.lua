@@ -123,5 +123,41 @@ vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
 -- un-indent selected lines and keep them selected
 vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<leader>dv", function()
+  local cur = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({ virtual_text = not cur })
+end, { desc = "Toggle diagnostic virtual text" })
+
 -- in the same config function, after setup:
 -- vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle Nvim-Tree" })
+-- Alt+f → search the word under the mouse (keeps your cursor where it was)
+vim.keymap.set("n", "<A-f>", function()
+  local mp = vim.fn.getmousepos()
+  if mp.winid == 0 then
+    return
+  end
+
+  local cur_win = vim.api.nvim_get_current_win()
+  local cur_pos = vim.api.nvim_win_get_cursor(cur_win)
+
+  local win = mp.winid
+  local buf = vim.api.nvim_win_get_buf(win)
+  local linecount = vim.api.nvim_buf_line_count(buf)
+
+  -- Clamp line to buffer range
+  local row = math.min(math.max(mp.line or 1, 1), linecount)
+
+  -- Get the line and clamp column to its byte length
+  local line = vim.api.nvim_buf_get_lines(buf, row - 1, row, false)[1] or ""
+  local maxbyte = #line
+  local col = math.max(0, math.min((mp.column or 1) - 1, maxbyte)) -- 0-based, in bytes
+
+  -- Jump, do "*", then restore (all wrapped in pcall to avoid hard errors)
+  pcall(vim.api.nvim_set_current_win, win)
+  local ok = pcall(vim.api.nvim_win_set_cursor, win, { row, col })
+  if ok then
+    vim.cmd("silent! normal! *")
+  end
+  pcall(vim.api.nvim_set_current_win, cur_win)
+  pcall(vim.api.nvim_win_set_cursor, cur_win, cur_pos)
+end, { desc = "Search word under mouse", silent = true })
