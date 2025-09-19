@@ -246,11 +246,8 @@ return {
       -- vim.g.mkdp_browser = 'chrome'
     end,
   },
-
   { "numToStr/Comment.nvim",      opts = {},               lazy = false },
-
   { "mhartington/formatter.nvim", config = setup_formatter },
-
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -290,4 +287,5 @@ return {
     tag = "0.1.4",
     requires = { { "nvim-lua/plenary.nvim" } },
   },
+  { "andymass/vim-matchup", event = "VeryLazy" }, -- improves % and adds tag-aware motions/textobjects
 }

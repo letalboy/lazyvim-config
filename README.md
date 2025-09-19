@@ -1,6 +1,6 @@
 A starter template for [LazyVim](https://github.com/LazyVim/LazyVim). Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
-### This build covers the following:
+### This build covers the following
 
 - Python
 - Rust
@@ -13,7 +13,7 @@ A starter template for [LazyVim](https://github.com/LazyVim/LazyVim). Refer to t
 - Svelte
 - Markdown
 
-### Theme:
+### Theme
 
 - Osaka Theme Setup To Acrilic Terminals
 
@@ -23,7 +23,7 @@ Here is how it looks:
 
 The wallpaper in the background is not included, it is a wallpaper engine wallpaper just to demonstrate the transparency
 
-## Auto Complete and Formatters:
+## Auto Complete and Formatters
 
 - prettier
 - tree-sitter ("nvim-treesitter/nvim-treesitter")
@@ -31,23 +31,25 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - vim-svelte ("evanleck/vim-svelte")
 - nvimformatter ("mhartington/formatter.nvim")
 
-## It supports GIT!:
+## It supports GIT
 
 - GitSigns
 - Other Git integrations, like last mod water marks, etc..
 
-## Keyboard Shortcuts Overview:
+## Keyboard Shortcuts Overview
 
-### **Basic Editing**:
+### **Basic Editing**
 
 - **Open Documentation String**: `shift + k` in normal mode over a function to view the doc string.
 - **Undo**: `ctrl + z`
 - **Redo**: `ctrl + shift + z`
 - **Cut Lines**: `ctrl + x`
+- **Cut block**: `ctrl + x + c`
 - **Copy**: `ctrl + c`
+- **Copy Block**: `ctrl + c + b`
 - **Paste**: `ctrl + v`
 
-### **Line and Text Manipulation**:
+### **Line and Text Manipulation**
 
 - **Indent Line**: `Tab`
 - **Unindent Line**: `ctrl + d`
@@ -57,7 +59,7 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
 - **Move Lines Down**: `alt + arrow down` or `<A-Down>`
 - **Disable Continuations**: Using `<Leader>o` and `<Leader>O` in normal mode.
 
-### **Tabs and Windows**:
+### **Tabs and Windows**
 
 - **New Tab**: `te` for new tab, `<tab>` for next tab, `<s-tab>` for previous tab.
 - **Split Window**: `ss` for horizontal split, `sv` for vertical split.
@@ -66,29 +68,32 @@ The wallpaper in the background is not included, it is a wallpaper engine wallpa
   - Left: `shift + h`
   - Right: `shift + l`
 
-### **Advanced Commands**:
+### **Advanced Commands**
 
-##### **Telescope Commands**:
-  - Find Files: `<leader>ff`
-  - Live Grep: `<leader>fg`
-  - Buffers: `<leader>fb`
-  - Help Tags: `<leader>fh`
-##### **Markdown Visualizer**:
-  - Open: `ctrl + mp` or `<leader>mp`
-  - Close: `ctrl + ms` or `<leader>ms`
-  - Toggle: `ctrl + mt` or `<leader>mt`
+##### **Telescope Commands**
 
-### **Screen Navigation**:
+- Find Files: `<leader>ff`
+- Live Grep: `<leader>fg`
+- Buffers: `<leader>fb`
+- Help Tags: `<leader>fh`
+
+##### **Markdown Visualizer**
+
+- Open: `ctrl + mp` or `<leader>mp`
+- Close: `ctrl + ms` or `<leader>ms`
+- Toggle: `ctrl + mt` or `<leader>mt`
+
+### **Screen Navigation**
 
 - Left: `shift + h`
 - Right: `shift + l`
 - Up: `shift + j`
 - Down: `shift + k`
 
-## ➡️ **IMPORTANT!** :
+## ➡️ **IMPORTANT!**
 
 > To use it ensure that you have [nvim](https://neovim.io/) installed in your machine and [LazyVim](https://github.com/LazyVim/LazyVim) installed too,
-follow the instructions in each part correctly to ensure that the setup will work as intended.
+> follow the instructions in each part correctly to ensure that the setup will work as intended.
 
 ## Installation and Setup Commands
 
@@ -96,44 +101,53 @@ To set up language servers, compilers, and other tools, follow these commands in
 
 ### 1. (Optional) **Windows Subsystem for Linux (WSL)**
 
-  ```
-  wsl --install
-  ```
+```
+wsl --install
+```
 
 ### 2. **Chocolatey Packages**
 
-  > Close all PowerShell/CMD windows  
-  > Press Win → type PowerShell\
-  > Right-click it → choose Run as Administrator
+> Close all PowerShell/CMD windows  
+> Press Win → type PowerShell\
+> Right-click it → choose Run as Administrator
 
 1. Install Chocolatey, the Windows package manager, using a PowerShell script (bypasses execution policy temporarily for the session)
-    ```shell
-      Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    ```
+
+   ```shell
+     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+   ```
+
 2. Install the MinGW compiler (Minimalist GNU for Windows) via Chocolatey for C/C++ development
-    ```shell
-      choco install mingw
-    ```
+
+   ```shell
+     choco install mingw
+   ```
+
 3. Install LLVM (a modern compiler infrastructure) via Chocolatey, useful for compiling projects with Clang or other LLVM-based tools
-    ```shell
-    choco install llvm
-    ```
+
+   ```shell
+   choco install llvm
+   ```
 
 4. Install `lazygit` (a simple terminal UI for Git commands) and `fzf` (a fuzzy finder for the terminal) using Chocolatey, with `-y` to auto-confirm
-    ```shell
-    choco install lazygit fzf -y
-    ```
+
+   ```shell
+   choco install lazygit fzf -y
+   ```
 
 5. Clean up any temporary files or cache created by Chocolatey to free up space and ensure a clean environment
-    ```shell
-    choco clean --yes
-    ```
+
+   ```shell
+   choco clean --yes
+   ```
 
 6. Installs **PowerShell Core** (also known as `pwsh`), the cross-platform, modern version of Windows PowerShell.
-    > Useful for scripts, developer tooling, and improved compatibility with modern CLIs and editors.
-      ```shell
-      choco install powershell-core -y
-      ```
+
+   > Useful for scripts, developer tooling, and improved compatibility with modern CLIs and editors.
+
+   ```shell
+   choco install powershell-core -y
+   ```
 
 ### 3. **Add cpp to your env vars**
 
@@ -145,26 +159,30 @@ To set up language servers, compilers, and other tools, follow these commands in
 6. Click in path
 7. In edit add the following path or the path that you installed it (for custom installations) :
 
-    ```
-    C:\msys64\mingw64\bin
-    ```
+   ```
+   C:\msys64\mingw64\bin
+   ```
 
 8. Save and open new terminal and do the following:
-    ```shell
-    gcc --version
-    g++ --version
-    ```
-    > It should print the versions
-10. If you have installed MSYS2 and want to use its package manager pacman to install additional tools or libraries,
-  open the MSYS2 terminal and use the pacman command. For example, to install the GCC compiler, you would use:
 
-    > For a 32-bit system, replace x86_64 with i686. (just replace)
+   ```shell
+   gcc --version
+   g++ --version
+   ```
 
-    ```
-    pacman -S mingw-w64-ucrt-x86_64-gcc
-    ```
+   > It should print the versions
 
-11. Remember to update your package database and upgrade the packages with:
+9. If you have installed MSYS2 and want to use its package manager pacman to install additional tools or libraries,
+   open the MSYS2 terminal and use the pacman command. For example, to install the GCC compiler, you would use:
+
+   > For a 32-bit system, replace x86_64 with i686. (just replace)
+
+   ```
+   pacman -S mingw-w64-ucrt-x86_64-gcc
+   ```
+
+10. Remember to update your package database and upgrade the packages with:
+
     ```
     pacman -Syu
     pacman -Su
@@ -172,134 +190,142 @@ To set up language servers, compilers, and other tools, follow these commands in
 
 ### 4. **Install MSys2 to manange packets**
 
-1. Go to https://www.msys2.org/
+1. Go to <https://www.msys2.org/>
 2. Then donwload this:
 
-    ![image](https://github.com/letalboy/lazyvim-config/assets/63066865/86de645e-f54a-4d11-9834-98fccd67c1e1)
+   ![image](https://github.com/letalboy/lazyvim-config/assets/63066865/86de645e-f54a-4d11-9834-98fccd67c1e1)
 
-3. Install it as default, you can follow the instructions in the https://www.msys2.org
+3. Install it as default, you can follow the instructions in the <https://www.msys2.org>
 
 ### 5. **Msys2 and MinGW**
 
-  1. Open Msys2 shell and follow the next steps ahead.
-  2. Install the GCC (GNU Compiler Collection), which is required for compiling C/C++ code on MSYS2
+1. Open Msys2 shell and follow the next steps ahead.
+2. Install the GCC (GNU Compiler Collection), which is required for compiling C/C++ code on MSYS2
 
-      ```
-      pacman -S gcc
-      ```
-  3. Install a complete set of development tools and toolchains (both 32-bit and 64-bit) including:
-      - `base-devel`: common build utilities (make, etc.)
-      - `mingw-w64-*`: MinGW-w64 compilers for cross-platform builds (GCC and Clang for x86_64/i686)
-      - `git`, `subversion`, `mercurial`: version control tools
-      - `cmake`: build system generator for both 32-bit and 64-bit
-      
-      ```
-      pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
-      ```
+   ```
+   pacman -S gcc
+   ```
+
+3. Install a complete set of development tools and toolchains (both 32-bit and 64-bit) including:
+
+   - `base-devel`: common build utilities (make, etc.)
+   - `mingw-w64-*`: MinGW-w64 compilers for cross-platform builds (GCC and Clang for x86_64/i686)
+   - `git`, `subversion`, `mercurial`: version control tools
+   - `cmake`: build system generator for both 32-bit and 64-bit
+
+   ```
+   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
+   ```
 
 ### 6. **Git Configuration**
 
-  > Return to shell with admin privileged:
+> Return to shell with admin privileged:
 
-  1. Mark the `LuaSnip` plugin directory as a safe Git directory to prevent Git warnings/errors when it's used by Neovim or other tools
+1. Mark the `LuaSnip` plugin directory as a safe Git directory to prevent Git warnings/errors when it's used by Neovim or other tools
 
-      ```shell
-      git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
-      ```
+   ```shell
+   git config --global --add safe.directory C:/Users/<Your Username>/AppData/Local/nvim-data/site/pack/packer/start/LuaSnip
+   ```
 
 ### 7. **NPM Packages**
 
-  > While in the shell with admin privileges run the following to install the language servers
+> While in the shell with admin privileges run the following to install the language servers
 
-  1. Install Windows-specific build tools necessary for compiling native Node.js modules
-      
-      ```shell
-      npm install -g windows-build-tools
-      ```
+1. Install Windows-specific build tools necessary for compiling native Node.js modules
 
-  2. Install commonly used language servers for HTML, CSS, and JSON (used by VS Code and other editors)
-      
-      ```shell
-      npm i -g vscode-langservers-extracted
-      ```
+   ```shell
+   npm install -g windows-build-tools
+   ```
 
-  3. Rebuild native modules for current Node.js version (used after installing or updating modules)
-    
-      ```shell
-      npm rebuild
-      ```
+2. Install commonly used language servers for HTML, CSS, and JSON (used by VS Code and other editors)
 
-  4. Install project-specific development dependencies for TypeScript and Prettier with Astro support
-   
-      ```shell
-      npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
-      ```
+   ```shell
+   npm i -g vscode-langservers-extracted
+   ```
 
-  5. Globally install essential language servers and tools for multiple languages (JS, Astro, Tailwind, Python, JSON)
+3. Rebuild native modules for current Node.js version (used after installing or updating modules)
 
-      ```shell
-      npm install -g typescript typescript-language-server node-gyp @astrojs/language-server prettier prettier-plugin-astro eslint-lsp tree-sitter-cli @tailwindcss/language-server pyright vscode-json-languageserver
-      ```
-  6. Install Neovim node bindings globally for better integration with the Neovim editor
+   ```shell
+   npm rebuild
+   ```
 
-      ```shell
-      npm install -g neovim
-      ```
+4. Install project-specific development dependencies for TypeScript and Prettier with Astro support
 
-  7. Rebuild again to ensure all global packages and native modules are aligned with the environment
+   ```shell
+   npm install --save-dev typescript typescript-language-server prettier prettier-plugin-astro
+   ```
 
-      ```shell
-      npm rebuild
-      ```
+5. Globally install essential language servers and tools for multiple languages (JS, Astro, Tailwind, Python, JSON)
+
+   ```shell
+   npm install -g typescript typescript-language-server node-gyp @astrojs/language-server prettier prettier-plugin-astro eslint-lsp tree-sitter-cli @tailwindcss/language-server pyright vscode-json-languageserver
+   ```
+
+6. Install Neovim node bindings globally for better integration with the Neovim editor
+
+   ```shell
+   npm install -g neovim
+   ```
+
+7. Rebuild again to ensure all global packages and native modules are aligned with the environment
+
+   ```shell
+   npm rebuild
+   ```
 
 ### 8. **Verify if tree sitter is installed**
 
-  1. Check the currently installed version of `tree-sitter` to verify it's available and correctly installed
-      ```
-        tree-sitter --version
-      ```
+1. Check the currently installed version of `tree-sitter` to verify it's available and correctly installed
 
-  2. (optional) If you encounter errors with Tree-sitter parsing or integration, update the CLI globally to the latest version
-      ```shell
-        npm update -g tree-sitter-cli
-      ```
+   ```
+     tree-sitter --version
+   ```
+
+2. (optional) If you encounter errors with Tree-sitter parsing or integration, update the CLI globally to the latest version
+
+   ```shell
+     npm update -g tree-sitter-cli
+   ```
+
 ### 9. (Optional) Required for Python Plugin Support Install Neovim Python Client
 
-  > The `--user` flag installs the package for your user only, avoiding the need for admin rights or virtual environments.
+> The `--user` flag installs the package for your user only, avoiding the need for admin rights or virtual environments.
 
+1. If you have Python installed, it's recommended to upgrade `pip` to ensure compatibility with modern packages and features.
 
-  1. If you have Python installed, it's recommended to upgrade `pip` to ensure compatibility with modern packages and features.
-  
-      ```shell
-      python -m pip install --upgrade pip
-      ```
+   ```shell
+   python -m pip install --upgrade pip
+   ```
 
-  2. This installs the `pynvim` library, which is required for Neovim plugins that use Python (e.g., linting, autocompletion, LSPs).
-      ```shell
-      python -m pip install --user pynvim
-      ```
+2. This installs the `pynvim` library, which is required for Neovim plugins that use Python (e.g., linting, autocompletion, LSPs).
 
-  
+   ```shell
+   python -m pip install --user pynvim
+   ```
+
 ### 10. **Now initialize lazyvim**
-  1. Ensure that you are in a administrator shell with privileges and then simple do:
-      ```shell
-      nvim
-      ```
 
-  2. After this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
+1. Ensure that you are in a administrator shell with privileges and then simple do:
+
+   ```shell
+   nvim
+   ```
+
+2. After this wait all the installations and when you don't see nothing changin in the screen and no messages go to next step
 
 ### 11. **Tree-Sitter and Language Servers**
-  1. In nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
 
-      ```
-      :TSInstall html javascript css typescript tsx astro
-      :TSUpdate
-      :TSInstall c cpp
-      :TSInstallSync
-      :checkhealth nvim-treesitter
-      ```
+1. In nvim default menu after runing `nvim` in a shell with administrator privileges, use the prompt that opens with ctrl + : and run the following:
 
-  2. After completing these steps, ensure to close the privileged shell and open it again before proceeding with further updates or installations.
+   ```
+   :TSInstall html javascript css typescript tsx astro
+   :TSUpdate
+   :TSInstall c cpp
+   :TSInstallSync
+   :checkhealth nvim-treesitter
+   ```
+
+2. After completing these steps, ensure to close the privileged shell and open it again before proceeding with further updates or installations.
 
 ## Troubleshooting
 
@@ -308,9 +334,11 @@ To set up language servers, compilers, and other tools, follow these commands in
 1. **Check Compatibility**: Ensure that your system meets all the prerequisites for LazyVim, including Neovim version, operating system compatibility, and any dependencies required by plugins or language servers.
 
 2. **Update Plugins**: Sometimes, issues can be resolved by simply updating your plugins. Use the following command to update your plugins:
+
    ```
    :PackerUpdate
    ```
+
 3. **Health Checks**: Neovim provides a built-in health check feature. Run `:checkhealth` to identify any problems with your setup, including issues with language servers, tree-sitter, or other integrations.
 
 4. **Consult Documentation**: The [LazyVim documentation](https://lazyvim.github.io/) is an excellent resource for troubleshooting common issues. It may offer specific advice for configuration or compatibility problems.
@@ -331,4 +359,4 @@ To set up language servers, compilers, and other tools, follow these commands in
 
 ### How to use ollama as copilot
 
-This lazy setup is prepared with support to ollama using this project: https://github.com/nomnivore/ollama.nvim, so to config it download the ollama for your system here: https://ollama.com/download, after this install it and config the model that you want by following the instructions in the project page. Afer this, your are done, so you can use it just saying `Ollama` in the prompt of lazy inside a file and you are ready to use it :)
+This lazy setup is prepared with support to ollama using this project: <https://github.com/nomnivore/ollama.nvim>, so to config it download the ollama for your system here: <https://ollama.com/download>, after this install it and config the model that you want by following the instructions in the project page. Afer this, your are done, so you can use it just saying `Ollama` in the prompt of lazy inside a file and you are ready to use it :)
