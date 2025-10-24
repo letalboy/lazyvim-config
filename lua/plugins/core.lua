@@ -5,10 +5,11 @@ end
 
 -- Setup function for nvim-treesitter
 local function setup_treesitter()
-  require("nvim-treesitter.configs").setup({
-    -- disable Lua_LS’s noisy “missing-fields” warnings
-    diagnostics = { disable = { "missing-fields" } },
-
+  local ok, configs = pcall(require, "nvim-treesitter.configs")
+  if not ok then
+    return -- plugin not on rtp yet; skip without crashing
+  end
+  configs.setup({
     ensure_installed = {
       "html",
       "markdown",
@@ -39,6 +40,8 @@ local function setup_treesitter()
     indent = {
       enable = true,
     },
+    sync_install = false,
+    auto_install = true,
   })
 end
 
@@ -135,7 +138,8 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+    version = "*",
     config = true,
   },
   {
