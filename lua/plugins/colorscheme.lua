@@ -20,7 +20,17 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    opts = {},
+    opts = {
+      transparent = false, -- set true if you want a transparent bg
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
+      vim.cmd.colorscheme("tokyonight") -- or "tokyonight-moon" etc.
+    end,
   },
   {
     "LazyVim/LazyVim",

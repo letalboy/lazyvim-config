@@ -130,7 +130,7 @@ return {
     priority = 1000,
     config = function()
       -- apply the theme
-      vim.cmd([[colorscheme oxocarbon]])
+      -- vim.cmd([[colorscheme oxocarbon]])
       -- optional: transparent background
       vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -288,8 +288,19 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.4",
-    requires = { { "nvim-lua/plenary.nvim" } },
+    -- move off the old pinned tag & declare deps the Lazy way
+    version = false, -- track latest 0.1.x
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      defaults = {
+        preview = {
+          treesitter = false, -- ← disable TS just in previewers
+        },
+      },
+    },
+    config = function(_, opts)
+      require("telescope").setup(opts)
+    end,
   },
   { "andymass/vim-matchup", event = "VeryLazy" }, -- improves % and adds tag-aware motions/textobjects
 }
