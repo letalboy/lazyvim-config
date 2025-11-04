@@ -161,3 +161,15 @@ vim.keymap.set("n", "<A-f>", function()
   pcall(vim.api.nvim_set_current_win, cur_win)
   pcall(vim.api.nvim_win_set_cursor, cur_win, cur_pos)
 end, { desc = "Search word under mouse", silent = true })
+
+-- Select entire buffer with Ctrl+A
+-- Normal: select all lines
+vim.keymap.set("n", "<C-A>", "ggVG", { noremap = true, silent = true, desc = "Select entire buffer" })
+
+-- Visual/Insert/Terminal: jump out, then select all
+vim.keymap.set("v", "<C-A>", "<Esc>ggVG", { noremap = true, silent = true, desc = "Select entire buffer" })
+vim.keymap.set("i", "<C-A>", "<Esc>ggVG", { noremap = true, silent = true, desc = "Select entire buffer" })
+vim.keymap.set("t", "<C-A>", [[<C-\><C-n>ggVG]], { noremap = true, silent = true, desc = "Select entire buffer" })
+
+-- Increment number:
+vim.keymap.set("n", "<leader>=", "<C-a>", { remap = true, desc = "Increment number" })

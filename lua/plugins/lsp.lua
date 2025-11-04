@@ -2,15 +2,14 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-
       -- ── helpers for cross-platform paths ──────────────────────────────
-      local util      = require("lspconfig.util")
-      local is_win    = vim.loop.os_uname().sysname == "Windows_NT"
+      local util = require("lspconfig.util")
+      local is_win = vim.loop.os_uname().sysname == "Windows_NT"
       local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
       -- add Mason’s bin dir to PATH, guarding against nil
-      local sep      = is_win and ";" or ":"
+      local sep = is_win and ";" or ":"
       local sys_path = vim.env.PATH or vim.env.Path or ""
-      vim.env.PATH   = mason_bin .. sep .. sys_path
+      vim.env.PATH = mason_bin .. sep .. sys_path
       -- ─────────────────────────────────────────────────────────────────
 
       -- create (or reuse) a group for LSP formatting autocmds
@@ -18,8 +17,16 @@ return {
 
       -- Define a common on_attach function
       local on_attach = function(client, bufnr)
+        -- Only skip LSP in non-file/utility buffers; don't look at 'modifiable' here.
+        local bt = vim.bo[bufnr].buftype
+        if bt == "nofile" or bt == "prompt" or bt == "help" or bt == "quickfix" or bt == "terminal" then
+          pcall(vim.lsp.buf_detach_client, bufnr, client.id)
+          return
+        end
+
         -- if server supports formatting, auto-format on save
         if client.server_capabilities.documentFormattingProvider then
+          local fmt_grp = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
           vim.api.nvim_clear_autocmds({ group = fmt_grp, buffer = bufnr })
           vim.api.nvim_create_autocmd("BufWritePre", {
             group = fmt_grp,
@@ -133,22 +140,27 @@ return {
         rust_analyzer = {
           on_attach = on_attach,
           -- make sure Neovim can find the binary
-          cmd       = { mason_bin .. (is_win and "/rust-analyzer.exe" or "/rust-analyzer") },
+          cmd = { mason_bin .. (is_win and "/rust-analyzer.exe" or "/rust-analyzer") },
           filetypes = { "rust" },
           root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
+
+          -- (fix): avoid Neovim's incremental change tracking
+          flags = {
+            allow_incremental_sync = false,
+            debounce_text_changes = 150,
+          },
+
           settings = {
             ["rust-analyzer"] = {
-              -- load all features, proc-macros, and out-dirs
               cargo = {
                 allFeatures = true,
                 loadOutDirsFromCheck = true,
               },
               procMacro = { enable = true },
-              -- run Clippy on save to avoid a bare `cargo check` crash
-              checkOnSave = {
-                enable = true,
-                command = "clippy",
-              },
+              -- Windows-friendly FS events (prevents drift/races)
+              files = { watcher = "client" },  -- windows-safe watcher
+              check = { command = "clippy" },  -- ← NEW (RA ≥2024)
+              checkOnSave = { enable = true }, -- ← legacy key, harmless if ignored
             },
           },
         },
@@ -165,7 +177,13 @@ return {
         docker_compose_language_service = {
           on_attach = on_attach,
           filetypes = { "yaml.docker-compose", "yaml" },
-          root_dir = util.root_pattern("docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml", ".git"),
+          root_dir = util.root_pattern(
+            "docker-compose.yml",
+            "docker-compose.yaml",
+            "compose.yml",
+            "compose.yaml",
+            ".git"
+          ),
           settings = {},
         },
       })
