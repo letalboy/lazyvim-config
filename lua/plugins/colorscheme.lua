@@ -21,15 +21,35 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      transparent = false, -- set true if you want a transparent bg
+      transparent = false,
       styles = {
         sidebars = "transparent",
         floats = "transparent",
       },
     },
     config = function(_, opts)
+      -- load tokyonight
       require("tokyonight").setup(opts)
-      vim.cmd.colorscheme("tokyonight") -- or "tokyonight-moon" etc.
+      vim.cmd.colorscheme("tokyonight")
+
+      -- Make the vertical split actually render (pick one you like)
+      vim.opt.fillchars:append({
+        vert = "│", -- or "▏" for a thinner bar, "┃" for thicker
+        vertleft = "│",
+        vertright = "│",
+        verthoriz = "┼", -- junction character
+      })
+
+      -- use the Visual (selection) color for split bars
+      local visual = vim.api.nvim_get_hl(0, { name = "Visual", link = false })
+      local sep = visual.bg or visual.fg or "#7aa2f7" -- fallback if needed
+
+      -- normal window separators
+      vim.api.nvim_set_hl(0, "WinSeparator", { fg = sep, bg = "NONE" })
+      vim.api.nvim_set_hl(0, "VertSplit", { fg = sep, bg = "NONE" })
+
+      -- neo-tree specific separator
+      vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { fg = sep, bg = "NONE" })
     end,
   },
   {
