@@ -33,6 +33,7 @@ local function setup_treesitter()
     },
     highlight = {
       enable = true,
+      disable = { "vim" },
     },
     incremental_selection = {
       enable = true,

@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("User", {
       },
       sync_install = false,
       auto_install = true,
-      highlight = { enable = true },
+      highlight = { enable = true, disable = { "vim" } },
       incremental_selection = { enable = true },
       indent = { enable = true },
     })
