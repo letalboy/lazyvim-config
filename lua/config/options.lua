@@ -13,6 +13,7 @@ vim.cmd([[
 
 vim.diagnostic.config({
   virtual_text = false,
+  virtual_lines = false,
   signs = true,
   underline = true,
   update_in_insert = false,
@@ -21,7 +22,7 @@ vim.diagnostic.config({
 
 -- Prevent the symbol from being draw
 vim.opt.fillchars:append({ vert = " " })
-vim.g.lazyvim_python_lsp = "pyright"
+vim.g.lazyvim_python_lsp = "basedpyright"
 
 -- Always show signs/nums
 vim.opt.signcolumn = "yes"

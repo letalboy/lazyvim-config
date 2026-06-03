@@ -58,7 +58,9 @@ end
 -- show diagnostics in sign column, underline, etc.
 vim.diagnostic.config({
   virtual_text = false, -- optional: disable inline text
+  virtual_lines = false,
   signs = true,
   underline = true,
   update_in_insert = false,
+  severity_sort = true,
 })

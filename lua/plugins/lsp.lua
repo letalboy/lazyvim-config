@@ -52,6 +52,12 @@ return {
 
       -- Merge all LSP servers
       opts.servers = vim.tbl_deep_extend("force", opts.servers or {}, {
+        ["*"] = {
+          keys = {
+            { "<CR>", vim.lsp.buf.definition, desc = "Go to Definition", has = "definition" },
+          },
+        },
+
         -- TypeScript Server
         vtsls = {
           on_attach = on_attach,
@@ -158,9 +164,9 @@ return {
               },
               procMacro = { enable = true },
               -- Windows-friendly FS events (prevents drift/races)
-              files = { watcher = "client" },  -- windows-safe watcher
-              check = { command = "clippy" },  -- ← NEW (RA ≥2024)
-              checkOnSave = { enable = true }, -- ← legacy key, harmless if ignored
+              files = { watcher = "client" },
+              check = { command = "check" },
+              checkOnSave = { enable = true },
             },
           },
         },
@@ -186,14 +192,6 @@ return {
           ),
           settings = {},
         },
-      })
-
-      -- Keep LazyVim default keybindings with goto-definition on <CR>
-      local Keys = require("lazyvim.plugins.lsp.keymaps").get()
-      table.insert(Keys, {
-        "<CR>",
-        vim.lsp.buf.definition,
-        desc = "Go to Definition",
       })
 
       -- Return the updated keybindings
