@@ -84,12 +84,14 @@ vim.api.nvim_set_keymap("n", "<C-V>", "p", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-V>", '<C-R>"', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-V>", "p", { noremap = true, silent = true })
 
--- Undo
-vim.api.nvim_set_keymap("n", "<C-Z>", "u", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-Z>", "<C-O>u", { noremap = true, silent = true })
+-- Undo / redo
+vim.keymap.set("n", "<C-Z>", "u", { noremap = true, silent = true, desc = "Undo" })
+vim.keymap.set("i", "<C-Z>", "<C-g>u<C-o>u", { noremap = true, silent = true, desc = "Undo" })
+vim.keymap.set("x", "<C-Z>", "<Esc>u", { noremap = true, silent = true, desc = "Undo" })
 
--- Redo
-vim.api.nvim_set_keymap("n", "<C-S-Z>", "<C-R>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-S-Z>", "<C-r>", { noremap = true, silent = true, desc = "Redo" })
+vim.keymap.set("i", "<C-S-Z>", "<C-g>u<C-o><C-r>", { noremap = true, silent = true, desc = "Redo" })
+vim.keymap.set("x", "<C-S-Z>", "<Esc><C-r>", { noremap = true, silent = true, desc = "Redo" })
 
 -- Create a line att top:
 vim.api.nvim_set_keymap("n", "<C-S-M>", ":execute 'normal! gg' | startinsert<CR>", { noremap = true, silent = true })

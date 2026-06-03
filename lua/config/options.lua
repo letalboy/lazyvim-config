@@ -5,6 +5,10 @@
 vim.g.mkdp_auto_start = 0
 vim.g.mkdp_auto_close = 1
 
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
+vim.opt.undoreload = 10000
+
 -- Hide split borders
 vim.cmd([[
   highlight WinSeparator guifg=NONE guibg=NONE
