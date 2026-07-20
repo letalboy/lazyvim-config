@@ -20,6 +20,7 @@ local function setup_treesitter()
       "astro",
       "c",
       "cpp",
+      "javascript",
       "go",
       "lua",
       "python",
