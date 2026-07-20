@@ -5,7 +5,11 @@ end
 
 -- Setup function for nvim-treesitter
 local function setup_treesitter()
-  require("nvim-treesitter.configs").setup({
+  local ok, configs = pcall(require, "nvim-treesitter.configs")
+  if not ok then
+    return -- plugin not on rtp yet; skip without crashing
+  end
+  configs.setup({
     ensure_installed = {
       "html",
       "markdown",
@@ -16,6 +20,7 @@ local function setup_treesitter()
       "astro",
       "c",
       "cpp",
+      "javascript",
       "go",
       "lua",
       "python",
@@ -29,6 +34,7 @@ local function setup_treesitter()
     },
     highlight = {
       enable = true,
+      disable = { "vim" },
     },
     incremental_selection = {
       enable = true,
@@ -36,6 +42,8 @@ local function setup_treesitter()
     indent = {
       enable = true,
     },
+    sync_install = false,
+    auto_install = true,
   })
 end
 
@@ -63,27 +71,27 @@ local function setup_project()
 end
 
 -- Setup function for gitsigns.nvim
-local function setup_gitsigns()
-  require("gitsigns").setup({
-    _extmark_signs = true,
-    _inline_messaging = false,
-    _threaded_diff = true,
-    watch_gitdir = {
-      interval = 1000,
-      follow_files = true,
-    },
-    sign_priority = 6,
-    update_debounce = 200,
-    status_formatter = nil,
-    max_file_length = 40000,
-  })
-  vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
-end
+
+--   require("gitsigns").setup({
+--     _extmark_signs = true,
+--     _inline_messaging = false,
+--     _threaded_diff = true,
+--     watch_gitdir = {
+--       interval = 1000,
+--       follow_files = true,
+--     },
+--     sign_priority = 6,
+--     update_debounce = 200,
+--     status_formatter = nil,
+--     max_file_length = 40000,
+--   })
+--   vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
+-- end
 
 -- Setup function for markdown-preview.nvim
-local function setup_markdown_preview()
-  vim.g.mkdp_auto_start = 1
-end
+-- local function setup_markdown_preview()
+--   vim.g.mkdp_auto_start = 1
+-- end
 
 -- Setup function for formatter.nvim
 local function setup_formatter()
@@ -117,7 +125,23 @@ end
 -- Plugin specifications
 return {
   {
-    "williamboman/mason.nvim",
+    "nyoom-engineering/oxocarbon.nvim",
+    -- load immediately so colorscheme is ready at startup
+    lazy = false,
+    -- ensure this has highest priority so no other theme overrides it
+    priority = 1000,
+    config = function()
+      -- apply the theme
+      -- vim.cmd([[colorscheme oxocarbon]])
+      -- optional: transparent background
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    end,
+  },
+  {
+    "mason-org/mason.nvim",
+    version = "*",
     config = true,
   },
   {
@@ -125,15 +149,31 @@ return {
     lazy = true,
     ft = "svelte",
   },
-  { "wuelnerdotexe/vim-astro",     ft = "astro" },
+  { "wuelnerdotexe/vim-astro", ft = "astro" },
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     config = setup_treesitter,
   },
-  { "virchau13/tree-sitter-astro", run = is_windows() and "tree-sitter generate" or "tree-sitter generate" },
-  { "akinsho/toggleterm.nvim",     config = setup_toggleterm },
-  { "ahmedkhalf/project.nvim",     config = setup_project },
+  {
+    "virchau13/tree-sitter-astro",
+    run = is_windows() and "tree-sitter generate" or "tree-sitter generate",
+  },
+  { "akinsho/toggleterm.nvim", config = setup_toggleterm },
+
+  -- {
+  --   "folke/which-key.nvim",
+  --   config = function()
+  --     require("which-key").setup({
+  --       -- your which-key options here (you can leave it empty for defaults)
+  --     })
+  --   end,
+  -- },
+
+  -- Automatically detects your project’s root (via patterns like .git/, package.json, Makefile, etc.)
+  { "ahmedkhalf/project.nvim", config = setup_project },
+
+  -- Git integration to show the modifications done throught git diff and other signs
   {
     "lewis6991/gitsigns.nvim",
     -- ensure we pull the patched async-safe code on main
@@ -193,6 +233,8 @@ return {
       }
     end,
   },
+
+  -- A plugin that let's you see an preview render of the markdown that you are edditing
   {
     "iamcco/markdown-preview.nvim",
     -- build step: install the small Node server
@@ -248,7 +290,19 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.4",
-    requires = { { "nvim-lua/plenary.nvim" } },
+    -- move off the old pinned tag & declare deps the Lazy way
+    version = false, -- track latest 0.1.x
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      defaults = {
+        preview = {
+          treesitter = false, -- ← disable TS just in previewers
+        },
+      },
+    },
+    config = function(_, opts)
+      require("telescope").setup(opts)
+    end,
   },
+  { "andymass/vim-matchup", event = "VeryLazy" }, -- improves % and adds tag-aware motions/textobjects
 }
