@@ -199,23 +199,22 @@ wsl --install
 
 ### 5. **Msys2 and MinGW**
 
-1. Open Msys2 shell and follow the next steps ahead.
-2. Install the GCC (GNU Compiler Collection), which is required for compiling C/C++ code on MSYS2
+  1. Open Msys2 shell and follow the next steps ahead.
+  2. Install the GCC (GNU Compiler Collection), which is required for compiling C/C++ code on MSYS2
 
-   ```
-   pacman -S gcc
-   ```
-
-3. Install a complete set of development tools and toolchains (both 32-bit and 64-bit) including:
-
-   - `base-devel`: common build utilities (make, etc.)
-   - `mingw-w64-*`: MinGW-w64 compilers for cross-platform builds (GCC and Clang for x86_64/i686)
-   - `git`, `subversion`, `mercurial`: version control tools
-   - `cmake`: build system generator for both 32-bit and 64-bit
-
-   ```
-   pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
-   ```
+      ```
+      pacman -S gcc
+      ```
+  3. Install a complete set of development tools and toolchains (both 32-bit and 64-bit) including:
+      - `base-devel`: common build utilities (make, etc.)
+      - `mingw-w64-*`: MinGW-w64 compilers for cross-platform builds (GCC and Clang for x86_64/i686)
+      - `git`, `subversion`, `mercurial`: version control tools
+      - `cmake`: build system generator for both 32-bit and 64-bit
+    
+      **Run the following command:**
+      ```
+      pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain git subversion mercurial mingw-w64-i686-cmake mingw-w64-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-x86_64-clang
+      ```
 
 ### 6. **Git Configuration**
 
